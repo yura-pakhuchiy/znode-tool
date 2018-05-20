@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/Users/blogin/PycharmProjects/DMT-git/src/ui/ui_transaction_dlg.ui'
+# Form implementation generated from reading ui file 'ui_transaction_dlg.ui'
 #
 # Created by: PyQt5 UI code generator 5.9.2
 #

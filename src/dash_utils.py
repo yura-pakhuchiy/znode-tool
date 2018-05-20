@@ -28,22 +28,22 @@ class ChainParams(object):
 
 
 class ChainParamsMainNet(ChainParams):
-    B58_PREFIXES_PUBKEY_ADDRESS = ['X']
-    B58_PREFIXES_SCRIPT_ADDRESS = ['7']
-    B58_PREFIXES_SECRET_KEY = ['7', 'X']
-    PREFIX_PUBKEY_ADDRESS = 76
-    PREFIX_SCRIPT_ADDRESS = 16
-    PREFIX_SECRET_KEY = 204
-    BIP44_COIN_TYPE = 5
+    B58_PREFIXES_PUBKEY_ADDRESS = ['a', 'Z']
+    B58_PREFIXES_SCRIPT_ADDRESS = ['3', '4']
+    B58_PREFIXES_SECRET_KEY = ['8', 'Y']
+    PREFIX_PUBKEY_ADDRESS = 82
+    PREFIX_SCRIPT_ADDRESS = 7
+    PREFIX_SECRET_KEY = 210
+    BIP44_COIN_TYPE = 136
 
 
 class ChainParamsTestNet(ChainParams):
-    B58_PREFIXES_PUBKEY_ADDRESS = ['y']
-    B58_PREFIXES_SCRIPT_ADDRESS = ['8', '9']
-    B58_PREFIXES_SECRET_KEY = ['9', 'c']
-    PREFIX_PUBKEY_ADDRESS = 140
-    PREFIX_SCRIPT_ADDRESS = 19
-    PREFIX_SECRET_KEY = 239
+    B58_PREFIXES_PUBKEY_ADDRESS = ['T']
+    B58_PREFIXES_SCRIPT_ADDRESS = ['2']
+    B58_PREFIXES_SECRET_KEY = ['7', 'U']
+    PREFIX_PUBKEY_ADDRESS = 65
+    PREFIX_SCRIPT_ADDRESS = 178
+    PREFIX_SECRET_KEY = 185
     BIP44_COIN_TYPE = 1
 
 
@@ -247,7 +247,7 @@ def electrum_sig_hash(message):
     """
     Based on project: https://github.com/chaeplin/dashmnb.
     """
-    padded = b"\x19DarkCoin Signed Message:\n" + \
+    padded = b"\x16Zcoin Signed Message:\n" + \
         num_to_varint(len(message)) + from_string_to_bytes(message)
     return bitcoin.dbl_sha256(padded)
 

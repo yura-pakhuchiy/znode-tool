@@ -168,8 +168,8 @@ class ConfigDlg(QDialog, Ui_ConfigDlg, WndUtils):
 
         if self.local_config.hw_type == HWType.trezor:
             self.chbHwTrezor.setChecked(True)
-        elif self.local_config.hw_type == HWType.keepkey:
-            self.chbHwKeepKey.setChecked(True)
+        # elif self.local_config.hw_type == HWType.keepkey:
+        #     self.chbHwKeepKey.setChecked(True)
         else:
             self.chbHwLedgerNanoS.setChecked(True)
 
@@ -182,10 +182,10 @@ class ConfigDlg(QDialog, Ui_ConfigDlg, WndUtils):
 
         self.chbCheckForUpdates.setChecked(self.local_config.check_for_updates)
         self.chbBackupConfigFile.setChecked(self.local_config.backup_config_file)
-        self.chbDownloadProposalExternalData.setChecked(self.local_config.read_proposals_external_attributes)
+        # self.chbDownloadProposalExternalData.setChecked(self.local_config.read_proposals_external_attributes)
         self.chbDontUseFileDialogs.setChecked(self.local_config.dont_use_file_dialogs)
-        self.chbConfirmWhenVoting.setChecked(self.local_config.confirm_when_voting)
-        self.chbAddRandomOffsetToVotingTime.setChecked(self.local_config.add_random_offset_to_vote_time)
+        # self.chbConfirmWhenVoting.setChecked(self.local_config.confirm_when_voting)
+        # self.chbAddRandomOffsetToVotingTime.setChecked(self.local_config.add_random_offset_to_vote_time)
         self.chbEncryptConfigFile.setChecked(self.local_config.encrypt_config_file)
 
         idx = {
@@ -595,8 +595,8 @@ class ConfigDlg(QDialog, Ui_ConfigDlg, WndUtils):
     def on_HwType_toggled(self):
         if self.chbHwTrezor.isChecked():
             self.local_config.hw_type = HWType.trezor
-        elif self.chbHwKeepKey.isChecked():
-            self.local_config.hw_type = HWType.keepkey
+        # elif self.chbHwKeepKey.isChecked():
+        #     self.local_config.hw_type = HWType.keepkey
         else:
             self.local_config.hw_type = HWType.ledger_nano_s
 
@@ -607,9 +607,9 @@ class ConfigDlg(QDialog, Ui_ConfigDlg, WndUtils):
     def on_chbHwTrezor_toggled(self, checked):
         self.on_HwType_toggled()
 
-    @pyqtSlot(bool)
-    def on_chbHwKeepKey_toggled(self, checked):
-        self.on_HwType_toggled()
+    # @pyqtSlot(bool)
+    # def on_chbHwKeepKey_toggled(self, checked):
+    #     self.on_HwType_toggled()
 
     @pyqtSlot(bool)
     def on_chbHwLedgerNanoS_toggled(self, checked):
@@ -727,13 +727,13 @@ class ConfigDlg(QDialog, Ui_ConfigDlg, WndUtils):
                             self.is_modified = modified
 
                         if file.get('server', '1') == '0':
-                            self.warnMsg("Remote dash.conf parameter 'server' is set to '0', so RPC interface will "
+                            self.warnMsg("Remote zcoin.conf parameter 'server' is set to '0', so RPC interface will "
                                          "not work.")
                         if not rpcuser:
-                            self.warnMsg("Remote dash.conf parameter 'rpcuser' is not set, so RPC interface will  "
+                            self.warnMsg("Remote zcoin.conf parameter 'rpcuser' is not set, so RPC interface will  "
                                          "not work.")
                         if not rpcpassword:
-                            self.warnMsg("Remote dash.conf parameter 'rpcpassword' is not set, so RPC interface will  "
+                            self.warnMsg("Remote zcoin.conf parameter 'rpcpassword' is not set, so RPC interface will  "
                                          "not work.")
                     self.update_connection_details_ui()
                 elif isinstance(dashd_conf, str):

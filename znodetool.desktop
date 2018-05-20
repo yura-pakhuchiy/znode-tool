@@ -1,0 +1,10 @@
+[Desktop Entry]
+Comment=Znode (Zcoin masternode) activation tool
+Exec=ZnodeTool
+GenericName=Masternode activation tool
+Icon=znode-tool
+Name=Znode Tool
+Categories=Finance;Network;
+StartupNotify=false
+Terminal=false
+Type=Application

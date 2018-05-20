@@ -138,7 +138,7 @@
       <string notr="true">color:red</string>
      </property>
      <property name="text">
-      <string>PIN/passphrase features is not available for Ledger devices.</string>
+      <string>PIN/passphrase features are not available for Ledger devices.</string>
      </property>
     </widget>
    </item>

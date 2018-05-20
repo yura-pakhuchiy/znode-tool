@@ -74,10 +74,10 @@ class AppConfig(object):
 
         self.dash_network = 'MAINNET'
 
-        self.block_explorer_tx_mainnet = 'https://insight.dash.org/insight/tx/%TXID%'
-        self.block_explorer_addr_mainnet = 'https://insight.dash.org/insight/address/%ADDRESS%'
-        self.block_explorer_tx_testnet = 'https://test.insight.dash.siampm.com/tx/%TXID%'
-        self.block_explorer_addr_testnet = 'https://test.insight.dash.siampm.com/address/%ADDRESS%'
+        self.block_explorer_tx_mainnet = 'https://insight.zcoin.io/tx/%TXID%'
+        self.block_explorer_addr_mainnet = 'https://insight.zcoin.io/address/%ADDRESS%'
+        self.block_explorer_tx_testnet = 'https://testexplorer.zcoin.io/tx/%TXID%'
+        self.block_explorer_addr_testnet = 'https://testexplorer.zcoin.io/address/%ADDRESS%'
         self.dash_central_proposal_api = 'https://www.dashcentral.org/api/v1/proposal?hash=%HASH%'
 
         self.check_for_updates = True
@@ -109,7 +109,7 @@ class AppConfig(object):
         # runtime information, set after connecting to hardware wallet device; for Dash mainnet the value is
         # 'Dash', for Dash testnet, the value is 'Dash Testnet' or 'tDash' depending on the (custom) firmware
         # used
-        self.hw_coin_name = 'Dash'
+        self.hw_coin_name = 'Zcoin'
 
         # attributes related to encryption cache data with hardware wallet:
         self.hw_generated_key = b"\xab\x0fs}\x8b\t\xb4\xc3\xb8\x05\xba\xd1\x96\x9bq`I\xed(8w\xbf\x95\xf0-\x1a\x14\xcb\x1c\x1d+\xcd"
@@ -162,7 +162,7 @@ class AppConfig(object):
         if not os.path.exists(self.cache_dir):
             os.makedirs(self.cache_dir)
 
-        cache_file_name = os.path.join(self.cache_dir, 'dmt_cache.json')
+        cache_file_name = os.path.join(self.cache_dir, 'cache.json')
         app_cache.init(cache_file_name, self.app_version)
         self.app_last_version = app_cache.get_value('app_version', '', str)
         self.app_config_file_name = ''
@@ -184,7 +184,7 @@ class AppConfig(object):
 
         # setup logging
         self.log_dir = os.path.join(app_user_dir, 'logs')
-        self.log_file = os.path.join(self.log_dir, 'dmt.log')
+        self.log_file = os.path.join(self.log_dir, 'znode-tool.log')
         if not os.path.exists(self.log_dir):
             os.makedirs(self.log_dir)
 
@@ -244,9 +244,9 @@ class AppConfig(object):
 
     def configure_cache(self):
         if self.is_testnet():
-            db_cache_file_name = 'dmt_cache_testnet.db'
+            db_cache_file_name = 'cache_testnet.db'
         else:
-            db_cache_file_name = 'dmt_cache.db'
+            db_cache_file_name = 'cache.db'
 
         new_db_cache_file_name = os.path.join(self.cache_dir, db_cache_file_name)
         if self.db_intf:
@@ -931,7 +931,7 @@ class MasternodeConfig:
     def __init__(self):
         self.name = ''
         self.ip = ''
-        self.port = '9999'
+        self.port = '8168'
         self.privateKey = ''
         self.collateralBip32Path = ''
         self.collateralAddress = ''

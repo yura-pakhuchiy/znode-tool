@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/Users/blogin/PycharmProjects/DMT-git/src/ui/ui_proposals.ui'
+# Form implementation generated from reading ui file 'ui_proposals.ui'
 #
 # Created by: PyQt5 UI code generator 5.9.2
 #

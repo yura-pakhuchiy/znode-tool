@@ -293,14 +293,14 @@ class DashdSSH(object):
             config = {}
             if pid:
                 dashd_running = True
-                # using dashd pid find its executable path and then .dashcore directory and finally dash.conf file
+                # using dashd pid find its executable path and then .zcoin directory and finally zcoin.conf file
                 executables = self.remote_command('ls -l /proc/' + str(pid) + '/exe')
                 if executables and len(executables) >= 1:
                     elems = executables[0].split('->')
                     if len(elems) == 2:
                         executable = elems[1].strip()
                         dashd_dir = os.path.dirname(executable)
-                        dash_conf_file = dashd_dir + '/.dashcore/dash.conf'
+                        dash_conf_file = dashd_dir + '/.zcoin/zcoin.conf'
                         conf_lines = []
                         try:
                             conf_lines = self.remote_command('cat ' + dash_conf_file)
@@ -312,13 +312,13 @@ class DashdSSH(object):
                                 elems = cwd_lines[0].split('->')
                                 if len(elems) >= 2:
                                     cwd = elems[1]
-                                    dash_conf_file = cwd + '/.dashcore/dash.conf'
+                                    dash_conf_file = cwd + '/.zcoin/zcoin.conf'
                                     try:
                                         conf_lines = self.remote_command('cat ' + dash_conf_file)
                                     except Exception as e:
                                         # second method did not suceed, so assume, that conf file is located
-                                        # i /home/<username>/.dashcore directory
-                                        dash_conf_file = '/home/' + self.username + '/.dashcore/dash.conf'
+                                        # i /home/<username>/.zcoin directory
+                                        dash_conf_file = '/home/' + self.username + '/.zcoin/zcoin.conf'
                                         conf_lines = self.remote_command('cat ' + dash_conf_file)
 
                         for line in conf_lines:
@@ -347,8 +347,8 @@ class DashdIndexException(JSONRPCException):
     def __init__(self, parent_exception):
         JSONRPCException.__init__(self, parent_exception.error)
         self.message = self.message + \
-                       '\n\nMake sure the dash daemon you are connecting to has the following options enabled in ' \
-                       'its dash.conf:\n\n' + \
+                       '\n\nMake sure the zcoind daemon you are connecting to has the following options enabled in ' \
+                       'its zcoin.conf:\n\n' + \
                        'addressindex=1\n' + \
                        'spentindex=1\n' + \
                        'timestampindex=1\n' + \
@@ -663,7 +663,7 @@ class DashdInterface(WndUtils):
         """
         try:
             if not self.cur_conn_def:
-                raise Exception('There is no connections to Dash network enabled in the configuration.')
+                raise Exception('There is no connections to Zcoin network enabled in the configuration.')
 
             while True:
                 try:
@@ -832,10 +832,10 @@ class DashdInterface(WndUtils):
             if verify_node:
                 node_under_testnet = info.get('testnet')
                 if self.config.is_testnet() and not node_under_testnet:
-                    raise Exception('This RPC node works under Dash MAINNET, but your current configuration is '
+                    raise Exception('This RPC node works under Zcoin MAINNET, but your current configuration is '
                                     'for TESTNET.')
                 elif self.config.is_mainnet() and node_under_testnet:
-                    raise Exception('This RPC node works under Dash TESTNET, but your current configuration is '
+                    raise Exception('This RPC node works under Zcoin TESTNET, but your current configuration is '
                                     'for MAINNET.')
             return info
         else:
@@ -848,26 +848,31 @@ class DashdInterface(WndUtils):
             if self.cur_conn_def.is_http_proxy():
                 return True
             else:
-                syn = self.proxy.mnsync('status')
+                syn = self.proxy.znsync('status')
                 return syn.get('IsSynced')
         else:
             raise Exception('Not connected')
 
     @control_rpc_call
-    def mnsync(self):
+    def znsync(self):
         if self.open():
             # if connecting to HTTP(S) proxy do not call this function - it will not be exposed
             if self.cur_conn_def.is_http_proxy():
                 return {}
             else:
-                return self.proxy.mnsync('status')
+                return self.proxy.znsync('status')
         else:
             raise Exception('Not connected')
 
     @control_rpc_call
-    def masternodebroadcast(self, what, hexto):
+    def znodebroadcast(self, what, hexto):
         if self.open():
-            return self.proxy.masternodebroadcast(what, hexto)
+            if what == 'relay':
+            # if False:
+                # FIXME: relay does not report correct status without 3rd parameter due to bug in zcoind
+                return self.proxy.znodebroadcast(what, hexto, "not-safe")
+            else:
+                return self.proxy.znodebroadcast(what, hexto)
         else:
             raise Exception('Not connected')
 
@@ -908,10 +913,10 @@ class DashdInterface(WndUtils):
                      (str(duration1), str(duration2), str(duration3)))
 
     @control_rpc_call
-    def get_masternodelist(self, *args, data_max_age=MASTERNODES_CACHE_VALID_SECONDS):
+    def get_znodelist(self, *args, data_max_age=MASTERNODES_CACHE_VALID_SECONDS):
         """
         Returns masternode list, read from the Dash network or from the internal cache.
-        :param args: arguments passed to the 'masternodelist' RPC call
+        :param args: arguments passed to the 'znodelist' RPC call
         :param data_max_age: maximum age (in seconds) of the cached masternode data to used; if the
             cache is older than 'data_max_age', then an RPC call is performed to load newer masternode data;
             value of 0 forces reading of the new data from the network
@@ -920,7 +925,7 @@ class DashdInterface(WndUtils):
         def parse_mns(mns_raw):
             """
             Parses dictionary of strings returned from the RPC to Masternode object list.
-            :param mns_raw: Dict of masternodes in format of RPC masternodelist command
+            :param mns_raw: Dict of masternodes in format of RPC znodelist command
             :return: list of Masternode object
             """
             tm_begin = time.time()
@@ -942,7 +947,7 @@ class DashdInterface(WndUtils):
                     mn.ident = mn_id
                     ret_list.append(mn)
             duration = time.time() - tm_begin
-            logging.info('Parse masternodelist time: ' + str(duration))
+            logging.info('Parse znodelist time: ' + str(duration))
             return ret_list
 
         def update_masternode_data(existing_mn, new_data, cursor):
@@ -977,11 +982,11 @@ class DashdInterface(WndUtils):
 
                 if self.masternodes and data_max_age > 0 and \
                    int(time.time()) - last_read_time < data_max_age:
-                    logging.info('Using cached masternodelist (data age: %s)' % str(int(time.time()) - last_read_time))
+                    logging.info('Using cached znodelist (data age: %s)' % str(int(time.time()) - last_read_time))
                     return self.masternodes
                 else:
-                    logging.info('Loading masternode list from Dash daemon...')
-                    mns = self.proxy.masternodelist(*args)
+                    logging.info('Loading masternode list from Zcoin daemon...')
+                    mns = self.proxy.znodelist(*args)
                     mns = parse_mns(mns)
                     logging.info('Finished loading masternode list')
 
@@ -1043,7 +1048,7 @@ class DashdInterface(WndUtils):
 
                     return self.masternodes
             else:
-                mns = self.proxy.masternodelist(*args)
+                mns = self.proxy.znodelist(*args)
                 mns = parse_mns(mns)
                 return mns
         else:
@@ -1101,7 +1106,7 @@ class DashdInterface(WndUtils):
     @control_rpc_call
     def sendrawtransaction(self, tx, use_instant_send):
         if self.open():
-            return self.proxy.sendrawtransaction(tx, False, use_instant_send)
+            return self.proxy.sendrawtransaction(tx, False)
         else:
             raise Exception('Not connected')
 

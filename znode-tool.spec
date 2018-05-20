@@ -20,9 +20,8 @@ with open(os.path.join(base_dir, 'version.txt')) as fptr:
             break
 
 add_files = [
- ('img/dmt.png','/img'),
- ('img/dash.ico','/img'),
- ('img/dmt.ico','/img'),
+ ('img/znode-tool.png','/img'),
+ ('img/znode-tool.ico','/img'),
  ('img/arrow-right.ico','/img'),
  ('img/hw-disconnect.png','/img'),
  ('img/hw-test.png','/img'),
@@ -65,7 +64,7 @@ lib_path = next(p for p in sys.path if 'site-packages' in p)
 add_files.append( (os.path.join(lib_path, 'bitcoin/english.txt'),'/bitcoin') )
 add_files.append( (os.path.join(lib_path, 'mnemonic/wordlist/english.txt'),'/mnemonic/wordlist') )
 
-a = Analysis(['src/dash_masternode_tool.py'],
+a = Analysis(['src/znode_tool.py'],
              pathex=[base_dir],
              binaries=[],
              datas=add_files,
@@ -85,17 +84,17 @@ exe = EXE(pyz,
           a.binaries,
           a.zipfiles,
           a.datas,
-          name='DashMasternodeTool',
+          name='ZnodeTool',
           debug=False,
           strip=False,
           upx=False,
           console=False,
-		  icon=os.path.join('img',('dmt.%s' % ('icns' if os_type=='darwin' else 'ico'))))
+		  icon=os.path.join('img',('znode-tool.%s' % ('icns' if os_type=='darwin' else 'ico'))))
 
 if os_type == 'darwin':
     app = BUNDLE(exe,
-                 name='DashMasternodeTool.app',
-                 icon='img/dmt.icns',
+                 name='ZnodeTool.app',
+                 icon='img/znode-tool.icns',
                  bundle_identifier=None,
                      info_plist={
                         'NSHighResolutionCapable': 'True'
@@ -114,10 +113,10 @@ os.chdir(dist_path)
 
 if os_type == 'win32':
     print('Compressing Windows executable')
-    os.system('"7z.exe" a %s %s -mx0' % (os.path.join(all_bin_dir, 'DashMasternodeTool_' + version_str + '.win' + no_bits + '.zip'),  'DashMasternodeTool.exe'))
+    os.system('"7z.exe" a %s %s -mx0' % (os.path.join(all_bin_dir, 'ZnodeTool_' + version_str + '.win' + no_bits + '.zip'),  'ZnodeTool.exe'))
 elif os_type == 'darwin':
     print('Compressing Mac executable')
-    os.system('zip -r "%s" "%s"' % (os.path.join(all_bin_dir, 'DashMasternodeTool_' + version_str + '.mac.zip'),  'DashMasternodeTool.app'))
+    os.system('zip -r "%s" "%s"' % (os.path.join(all_bin_dir, 'ZnodeTool_' + version_str + '.mac.zip'),  'ZnodeTool.app'))
 elif os_type == 'linux':
     print('Compressing Linux executable')
-    os.system('tar -zcvf %s %s' % (os.path.join(all_bin_dir, 'DashMasternodeTool_' + version_str + '.linux.tar.gz'),  'DashMasternodeTool'))
+    os.system('tar -zcvf %s %s' % (os.path.join(all_bin_dir, 'ZnodeTool_' + version_str + '.linux.tar.gz'),  'ZnodeTool'))

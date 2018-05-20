@@ -68,7 +68,7 @@
        </sizepolicy>
       </property>
       <property name="title">
-       <string>Masternode</string>
+       <string>Znode</string>
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout">
        <item>
@@ -105,7 +105,7 @@
               </size>
              </property>
              <property name="toolTip">
-              <string>List of configured masternodes</string>
+              <string>List of configured Znodes</string>
              </property>
              <property name="editable">
               <bool>false</bool>
@@ -127,7 +127,7 @@
               </size>
              </property>
              <property name="toolTip">
-              <string>Create a new Masternode configuration</string>
+              <string>Create a new Znode configuration</string>
              </property>
              <property name="text">
               <string>New</string>
@@ -143,7 +143,7 @@
               </sizepolicy>
              </property>
              <property name="toolTip">
-              <string>Duplicate masternode entry</string>
+              <string>Duplicate Znode entry</string>
              </property>
              <property name="text">
               <string>Duplicate</string>
@@ -159,7 +159,7 @@
               </sizepolicy>
              </property>
              <property name="toolTip">
-              <string>Delete current Masternode configuration</string>
+              <string>Delete current Znode configuration</string>
              </property>
              <property name="text">
               <string>Delete</string>
@@ -226,7 +226,7 @@
               </size>
              </property>
              <property name="toolTip">
-              <string>The Masternode's IP address for incoming communication with other nodes</string>
+              <string>The Znode's IP address for incoming communication with other nodes</string>
              </property>
             </widget>
            </item>
@@ -258,14 +258,14 @@
               </size>
              </property>
              <property name="toolTip">
-              <string>The Masternode's TCP port number for incoming communication with other nodes</string>
+              <string>The Znode's TCP port number for incoming communication with other nodes</string>
              </property>
             </widget>
            </item>
            <item>
             <widget class="QCheckBox" name="chbUseDefaultProtocolVersion">
              <property name="toolTip">
-              <string>Use the protocol version number (from the RPC node) when starting masternode</string>
+              <string>Use the protocol version number (from the RPC node) when starting Znode</string>
              </property>
              <property name="text">
               <string>Use default protocol version</string>
@@ -281,7 +281,7 @@
               </size>
              </property>
              <property name="toolTip">
-              <string>Enter the protocol version number to be sent at masternode start time</string>
+              <string>Enter the protocol version number to be sent at Znode start time</string>
              </property>
              <property name="statusTip">
               <string/>
@@ -335,7 +335,7 @@
               </size>
              </property>
              <property name="toolTip">
-              <string>The collateral transaction hash from the 1000 Dash deposit</string>
+              <string>The collateral transaction hash from the 1000 XZC deposit</string>
              </property>
              <property name="text">
               <string/>
@@ -361,7 +361,7 @@
               </size>
              </property>
              <property name="toolTip">
-              <string>The collateral transaction's (unspent) output index with the 1000 Dash deposit (usally 0)</string>
+              <string>The collateral transaction's (unspent) output index with the 1000 XZC deposit (usally 0)</string>
              </property>
             </widget>
            </item>
@@ -399,13 +399,13 @@
               </size>
              </property>
              <property name="toolTip">
-              <string>Dash address of the 1000 Dash collateral, coverted from BIP32 path with hardware wallet.</string>
+              <string>Zcoin address of the 1000 XZC collateral, coverted from BIP32 path with hardware wallet.</string>
              </property>
              <property name="readOnly">
               <bool>false</bool>
              </property>
              <property name="placeholderText">
-              <string>Dash address</string>
+              <string>Zcoin address</string>
              </property>
             </widget>
            </item>
@@ -444,7 +444,7 @@
                 </size>
                </property>
                <property name="toolTip">
-                <string>Convert Dash address to BIP32 path using hardware wallet</string>
+                <string>Convert Zcoin address to BIP32 path using hardware wallet</string>
                </property>
                <property name="text">
                 <string/>
@@ -478,7 +478,7 @@
                 </size>
                </property>
                <property name="toolTip">
-                <string>Convert BIP32 path to Dash address using hardware wallet</string>
+                <string>Convert BIP32 path to Zcoin address using hardware wallet</string>
                </property>
                <property name="text">
                 <string/>
@@ -514,7 +514,7 @@
               </size>
              </property>
              <property name="toolTip">
-              <string>BIP32 path of the 1000 Dash collateral (e.g. 44'/5'/0'/0/0)</string>
+              <string>BIP32 path of the 1000 XZC collateral (e.g. 44'/5'/0'/0/0)</string>
              </property>
              <property name="placeholderText">
               <string>BIP32 path</string>
@@ -536,7 +536,7 @@
          <item row="3" column="0">
           <widget class="QLabel" name="label_9">
            <property name="text">
-            <string>MN private key:</string>
+            <string>Znode private key:</string>
            </property>
            <property name="alignment">
             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -546,7 +546,7 @@
          <item row="6" column="0">
           <widget class="QLabel" name="label_8">
            <property name="text">
-            <string>Masternode status:</string>
+            <string>Znode status:</string>
            </property>
            <property name="alignment">
             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -584,7 +584,7 @@
             </size>
            </property>
            <property name="toolTip">
-            <string>The Masternode's configuration name</string>
+            <string>The Znode's configuration name</string>
            </property>
           </widget>
          </item>
@@ -629,7 +629,7 @@
          <item row="0" column="0">
           <widget class="QLabel" name="label_5">
            <property name="text">
-            <string>Masternodes:</string>
+            <string>Znodes:</string>
            </property>
            <property name="alignment">
             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -683,14 +683,14 @@
             </size>
            </property>
            <property name="toolTip">
-            <string>Masternode's private key. Use your own or click the button &lt;Generate new&gt; to create a new and random private key with the use of 'bitcoin' library.</string>
+            <string>Znode's private key. Use your own or click the button &lt;Generate new&gt; to create a new and random private key with the use of 'bitcoin' library.</string>
            </property>
           </widget>
          </item>
          <item row="6" column="3">
           <widget class="QPushButton" name="btnRefreshMnStatus">
            <property name="toolTip">
-            <string>Get Masternode's status</string>
+            <string>Get Znode's status</string>
            </property>
            <property name="text">
             <string>Get status</string>
@@ -738,13 +738,13 @@
                 </size>
                </property>
                <property name="toolTip">
-                <string>Broadcast information about the Masternode</string>
+                <string>Broadcast information about the Znode</string>
                </property>
                <property name="styleSheet">
                 <string notr="true"/>
                </property>
                <property name="text">
-                <string>Start Masternode using hardware wallet</string>
+                <string>Start Znode using hardware wallet</string>
                </property>
               </widget>
              </item>
@@ -898,8 +898,8 @@
    <addaction name="action_test_hw_connection"/>
    <addaction name="action_disconnect_hw"/>
    <addaction name="separator"/>
-   <addaction name="action_open_proposals_window"/>
-   <addaction name="separator"/>
+   <!-- <addaction name="action_open_proposals_window"/> -->
+   <!-- <addaction name="separator"/> -->
    <addaction name="action_transfer_funds_for_any_address"/>
    <addaction name="action_transfer_funds_for_cur_mn"/>
    <addaction name="action_transfer_funds_for_all_mns"/>
@@ -907,12 +907,12 @@
   </widget>
   <action name="action_transfer_funds_for_cur_mn">
    <property name="text">
-    <string>Transfer Funds for Current Masternode...</string>
+    <string>Transfer Funds for Current Znode...</string>
    </property>
   </action>
   <action name="action_transfer_funds_for_all_mns">
    <property name="text">
-    <string>Transfer Funds for All Masternodes</string>
+    <string>Transfer Funds for All Znodes</string>
    </property>
   </action>
   <action name="action_transfer_funds_for_any_address">
@@ -922,7 +922,7 @@
   </action>
   <action name="action_sign_message_for_cur_mn">
    <property name="text">
-    <string>Sign Message for Current Masternode...</string>
+    <string>Sign Message for Current Znode...</string>
    </property>
   </action>
   <action name="action_hw_configuration">
@@ -953,7 +953,7 @@
     <string>Check Network Connection</string>
    </property>
    <property name="toolTip">
-    <string>Check Dash Network Connection</string>
+    <string>Check Zcoin Network Connection</string>
    </property>
   </action>
   <action name="action_open_settings_window">
@@ -1002,7 +1002,7 @@
   </action>
   <action name="action_about_app">
    <property name="text">
-    <string>About DashMasternodeTool...</string>
+    <string>About Znode Tool...</string>
    </property>
    <property name="menuRole">
     <enum>QAction::AboutRole</enum>
@@ -1010,7 +1010,7 @@
   </action>
   <action name="action_import_masternode_conf">
    <property name="text">
-    <string>Import masternodes from the masternode.conf file...</string>
+    <string>Import Znodes from the znode.conf file...</string>
    </property>
   </action>
   <action name="action_about_qt">
@@ -1026,7 +1026,7 @@
   </action>
   <action name="action_gen_mn_priv_key_compressed">
    <property name="text">
-    <string>Generate masternode private key (compressed)</string>
+    <string>Generate Znode private key (compressed)</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+Alt+C</string>
@@ -1034,10 +1034,10 @@
   </action>
   <action name="action_gen_mn_priv_key_uncompressed">
    <property name="text">
-    <string>Generate masternode private key (uncompressed)</string>
+    <string>Generate Znode private key (uncompressed)</string>
    </property>
    <property name="toolTip">
-    <string>Generate masternode private key (uncompressed)</string>
+    <string>Generate Znode private key (uncompressed)</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+Alt+U</string>

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/Users/blogin/PycharmProjects/DMT-git/src/ui/ui_send_payout_dlg.ui'
+# Form implementation generated from reading ui file 'ui_send_payout_dlg.ui'
 #
 # Created by: PyQt5 UI code generator 5.9.2
 #
@@ -245,7 +245,7 @@ class Ui_SendPayoutDlg(object):
         self.label_3.setText(_translate("SendPayoutDlg", "View as"))
         self.cbo_address_source_mode.setItemText(0, _translate("SendPayoutDlg", "Wallet Account"))
         self.cbo_address_source_mode.setItemText(1, _translate("SendPayoutDlg", "BIP32 Path"))
-        self.cbo_address_source_mode.setItemText(2, _translate("SendPayoutDlg", "Masternode Address"))
+        self.cbo_address_source_mode.setItemText(2, _translate("SendPayoutDlg", "Znode Address"))
         self.lbl_account.setText(_translate("SendPayoutDlg", "Account  "))
         self.btn_add_hw_account_nr.setToolTip(_translate("SendPayoutDlg", "Add new account number"))
         self.btn_add_hw_account_nr.setText(_translate("SendPayoutDlg", "."))
@@ -253,7 +253,7 @@ class Ui_SendPayoutDlg(object):
         self.lblSourceBip32Path.setText(_translate("SendPayoutDlg", "BIP32 path"))
         self.btn_src_bip32_path.setToolTip(_translate("SendPayoutDlg", "Change BIP32 path"))
         self.btn_src_bip32_path.setText(_translate("SendPayoutDlg", "..."))
-        self.lbl_src_masternode.setText(_translate("SendPayoutDlg", "Masternode"))
+        self.lbl_src_masternode.setText(_translate("SendPayoutDlg", "Znode"))
         self.btnLoadTransactions.setText(_translate("SendPayoutDlg", "Reload"))
         self.btnCheckAll.setText(_translate("SendPayoutDlg", "Select All"))
         self.btnUncheckAll.setText(_translate("SendPayoutDlg", "Unselect All"))

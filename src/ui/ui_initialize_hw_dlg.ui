@@ -77,6 +77,9 @@
           </item>
           <item>
            <widget class="QRadioButton" name="rbDeviceKeepkey">
+            <property name="visible">
+             <bool>false</bool>
+            </property>
             <property name="text">
              <string>KeepKey</string>
             </property>
@@ -861,7 +864,7 @@
              <item>
               <widget class="QLabel" name="label_5">
                <property name="text">
-                <string>Dash addresses which will be available in the device after finishing the process:</string>
+                <string>Zcoin addresses which will be available in the device after finishing the process:</string>
                </property>
                <property name="wordWrap">
                 <bool>true</bool>

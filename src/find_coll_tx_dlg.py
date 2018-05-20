@@ -73,17 +73,17 @@ class FindCollateralTxDlg(QDialog, ui_find_coll_tx_dlg.Ui_FindCollateralTxDlg, w
                 sh.setWidth(700)
             self.setBaseSize(sh)
             if self.read_only:
-                msg = f'<span style="color:blue">Found 1000 Dash transaction(s):' \
+                msg = f'<span style="color:blue">Found 1000 XZC transaction(s):' \
                       f'</span>'
             else:
-                msg = f'<span style="color:blue">Found 1000 Dash transaction(s). Click the "Apply" button to copy' \
+                msg = f'<span style="color:blue">Found 1000 XZC transaction(s). Click the "Apply" button to copy' \
                       f' the transaction id/index to the selected masternode configuration.</span>'
 
             self.lblMessage.setText(msg)
             self.lblMessage.setVisible(True)
             self.centerByWindow(self.main_wnd)
         else:
-            self.lblMessage.setText('<span style="color:red">Found no unspent 1000 Dash transactions  '
+            self.lblMessage.setText('<span style="color:red">Found no unspent 1000 XZC transactions  '
                                     'sent to address %s.</span>' %
                                     self.dash_address)
             self.lblMessage.setVisible(True)
@@ -93,7 +93,7 @@ class FindCollateralTxDlg(QDialog, ui_find_coll_tx_dlg.Ui_FindCollateralTxDlg, w
     def load_utxos_thread(self, ctrl):
         try:
             if not self.dashd_intf.open():
-                self.errorMsg('Dash daemon not connected')
+                self.errorMsg('Zcoin daemon not connected')
             else:
                 try:
                     self.block_count = self.dashd_intf.getblockcount()

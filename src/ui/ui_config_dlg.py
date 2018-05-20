@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/Users/blogin/PycharmProjects/DMT-git/src/ui/ui_config_dlg.ui'
+# Form implementation generated from reading ui file 'ui_config_dlg.ui'
 #
 # Created by: PyQt5 UI code generator 5.9.2
 #
@@ -146,11 +146,6 @@ class Ui_ConfigDlg(object):
         self.chbHwTrezor.setChecked(True)
         self.chbHwTrezor.setObjectName("chbHwTrezor")
         self.layHardwareWallet.addWidget(self.chbHwTrezor)
-        self.chbHwKeepKey = QtWidgets.QRadioButton(self.tabMisc)
-        self.chbHwKeepKey.setMinimumSize(QtCore.QSize(70, 0))
-        self.chbHwKeepKey.setMaximumSize(QtCore.QSize(16777215, 16777215))
-        self.chbHwKeepKey.setObjectName("chbHwKeepKey")
-        self.layHardwareWallet.addWidget(self.chbHwKeepKey)
         self.chbHwLedgerNanoS = QtWidgets.QRadioButton(self.tabMisc)
         self.chbHwLedgerNanoS.setObjectName("chbHwLedgerNanoS")
         self.layHardwareWallet.addWidget(self.chbHwLedgerNanoS)
@@ -188,15 +183,6 @@ class Ui_ConfigDlg(object):
         self.chbBackupConfigFile = QtWidgets.QCheckBox(self.tabMisc)
         self.chbBackupConfigFile.setObjectName("chbBackupConfigFile")
         self.verticalLayout_2.addWidget(self.chbBackupConfigFile)
-        self.chbConfirmWhenVoting = QtWidgets.QCheckBox(self.tabMisc)
-        self.chbConfirmWhenVoting.setObjectName("chbConfirmWhenVoting")
-        self.verticalLayout_2.addWidget(self.chbConfirmWhenVoting)
-        self.chbAddRandomOffsetToVotingTime = QtWidgets.QCheckBox(self.tabMisc)
-        self.chbAddRandomOffsetToVotingTime.setObjectName("chbAddRandomOffsetToVotingTime")
-        self.verticalLayout_2.addWidget(self.chbAddRandomOffsetToVotingTime)
-        self.chbDownloadProposalExternalData = QtWidgets.QCheckBox(self.tabMisc)
-        self.chbDownloadProposalExternalData.setObjectName("chbDownloadProposalExternalData")
-        self.verticalLayout_2.addWidget(self.chbDownloadProposalExternalData)
         self.chbDontUseFileDialogs = QtWidgets.QCheckBox(self.tabMisc)
         self.chbDontUseFileDialogs.setToolTip("")
         self.chbDontUseFileDialogs.setObjectName("chbDontUseFileDialogs")
@@ -236,7 +222,7 @@ class Ui_ConfigDlg(object):
     def retranslateUi(self, ConfigDlg):
         _translate = QtCore.QCoreApplication.translate
         ConfigDlg.setWindowTitle(_translate("ConfigDlg", "Dialog"))
-        self.label_2.setText(_translate("ConfigDlg", "Dash network:"))
+        self.label_2.setText(_translate("ConfigDlg", "Zcoin network:"))
         self.cboDashNetwork.setItemText(0, _translate("ConfigDlg", "MAINNET"))
         self.cboDashNetwork.setItemText(1, _translate("ConfigDlg", "TESTNET"))
         self.btnNewConn.setToolTip(_translate("ConfigDlg", "Add New Connection"))
@@ -247,10 +233,9 @@ class Ui_ConfigDlg(object):
         self.label.setText(_translate("ConfigDlg", "Connections:"))
         self.chbRandomConn.setToolTip(_translate("ConfigDlg", "Pick random connection to distribute clients\' load over multiple nodes."))
         self.chbRandomConn.setText(_translate("ConfigDlg", "Pick random connection"))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tabDashd), _translate("ConfigDlg", "Dash network"))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tabDashd), _translate("ConfigDlg", "Zcoin network"))
         self.label_3.setText(_translate("ConfigDlg", "Hardware wallet:"))
         self.chbHwTrezor.setText(_translate("ConfigDlg", "Trezor"))
-        self.chbHwKeepKey.setText(_translate("ConfigDlg", "KeepKey"))
         self.chbHwLedgerNanoS.setText(_translate("ConfigDlg", "Ledger Nano S"))
         self.lblKeepkeyPassEncoding.setText(_translate("ConfigDlg", "KeepKey passphrase encoding:"))
         self.cboKeepkeyPassEncoding.setItemText(0, _translate("ConfigDlg", "NFC: compatible with the official KeepKey app"))
@@ -260,9 +245,6 @@ class Ui_ConfigDlg(object):
         self.chbCheckForUpdates.setText(_translate("ConfigDlg", "Check for updates"))
         self.chbBackupConfigFile.setToolTip(_translate("ConfigDlg", "If checked, old config file will be saved when changing configuration"))
         self.chbBackupConfigFile.setText(_translate("ConfigDlg", "Backup config file"))
-        self.chbConfirmWhenVoting.setText(_translate("ConfigDlg", "Ask for confirmation when voting (proposals)"))
-        self.chbAddRandomOffsetToVotingTime.setText(_translate("ConfigDlg", "Add random offset to a vote time to enhance privacy (proposals)"))
-        self.chbDownloadProposalExternalData.setText(_translate("ConfigDlg", "Download external proposal attributes (DashCentral.org)"))
         self.chbDontUseFileDialogs.setText(_translate("ConfigDlg", "Don\'t use file dialogs"))
         self.lblLogLevel.setText(_translate("ConfigDlg", "Log level:"))
         self.cboLogLevel.setItemText(0, _translate("ConfigDlg", "Critical"))

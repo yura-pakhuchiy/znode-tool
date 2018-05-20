@@ -25,20 +25,20 @@ class AboutDlg(QDialog, ui_about_dlg.Ui_AboutDlg, WndUtils):
     def setupUi(self):
         ui_about_dlg.Ui_AboutDlg.setupUi(self, self)
         self.setWindowTitle("About")
-        img = QPixmap(os.path.join(self.app_config.app_path, "img/dmt.png"))
+        img = QPixmap(os.path.join(self.app_config.app_path, "img/znode-tool.png"))
         img = img.scaled(QSize(64, 64))
         self.lblImage.setPixmap(img)
-        self.lblAppName.setText('Dash Masternode Tool ' + self.app_version_str)
+        self.lblAppName.setText('Znode Tool ' + self.app_version_str)
         self.textAbout.setOpenExternalLinks(True)
         self.textAbout.viewport().setAutoFillBackground(False)
         if sys.platform == 'win32':
-            self.resize(600, 310)
+            # self.resize(600, 390)
             self.textAbout.setHtml(self.textAbout.toHtml().replace('font-size:11pt', 'font-size:10pt'))
             self.textAbout.setHtml(self.textAbout.toHtml().replace('font-size:9pt', 'font-size:8pt'))
         elif sys.platform == 'darwin':
             self.textAbout.setHtml(self.textAbout.toHtml().replace('font-size:11pt', 'font-size:13pt'))
-        elif sys.platform == 'linux':
-            self.resize(620, 320)
+        # elif sys.platform == 'linux':
+        #     self.resize(620, 400)
         # self.layout().setSizeConstraint(QLayout.SetFixedSize)
 
     @pyqtSlot(bool)

@@ -36,7 +36,7 @@
      </property>
      <widget class="QWidget" name="tabDashd">
       <attribute name="title">
-       <string>Dash network</string>
+       <string>Zcoin network</string>
       </attribute>
       <layout class="QVBoxLayout" name="verticalLayout_3">
        <property name="spacing">
@@ -59,7 +59,7 @@
          <item>
           <widget class="QLabel" name="label_2">
            <property name="text">
-            <string>Dash network:</string>
+            <string>Zcoin network:</string>
            </property>
           </widget>
          </item>
@@ -356,25 +356,25 @@
            </property>
           </widget>
          </item>
-         <item>
-          <widget class="QRadioButton" name="chbHwKeepKey">
-           <property name="minimumSize">
-            <size>
-             <width>70</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>16777215</width>
-             <height>16777215</height>
-            </size>
-           </property>
-           <property name="text">
-            <string>KeepKey</string>
-           </property>
-          </widget>
-         </item>
+         <!-- <item> -->
+         <!--  <widget class="QRadioButton" name="chbHwKeepKey"> -->
+         <!--   <property name="minimumSize"> -->
+         <!--    <size> -->
+         <!--     <width>70</width> -->
+         <!--     <height>0</height> -->
+         <!--    </size> -->
+         <!--   </property> -->
+         <!--   <property name="maximumSize"> -->
+         <!--    <size> -->
+         <!--     <width>16777215</width> -->
+         <!--     <height>16777215</height> -->
+         <!--    </size> -->
+         <!--   </property> -->
+         <!--   <property name="text"> -->
+         <!--    <string>KeepKey</string> -->
+         <!--   </property> -->
+         <!--  </widget> -->
+         <!-- </item> -->
          <item>
           <widget class="QRadioButton" name="chbHwLedgerNanoS">
            <property name="text">
@@ -485,27 +485,27 @@
          </property>
         </widget>
        </item>
-       <item>
-        <widget class="QCheckBox" name="chbConfirmWhenVoting">
-         <property name="text">
-          <string>Ask for confirmation when voting (proposals)</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QCheckBox" name="chbAddRandomOffsetToVotingTime">
-         <property name="text">
-          <string>Add random offset to a vote time to enhance privacy (proposals)</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QCheckBox" name="chbDownloadProposalExternalData">
-         <property name="text">
-          <string>Download external proposal attributes (DashCentral.org)</string>
-         </property>
-        </widget>
-       </item>
+       <!-- <item> -->
+       <!--  <widget class="QCheckBox" name="chbConfirmWhenVoting"> -->
+       <!--   <property name="text"> -->
+       <!--    <string>Ask for confirmation when voting (proposals)</string> -->
+       <!--   </property> -->
+       <!--  </widget> -->
+       <!-- </item> -->
+       <!-- <item> -->
+       <!--  <widget class="QCheckBox" name="chbAddRandomOffsetToVotingTime"> -->
+       <!--   <property name="text"> -->
+       <!--    <string>Add random offset to a vote time to enhance privacy (proposals)</string> -->
+       <!--   </property> -->
+       <!--  </widget> -->
+       <!-- </item> -->
+       <!-- <item> -->
+       <!--  <widget class="QCheckBox" name="chbDownloadProposalExternalData"> -->
+       <!--   <property name="text"> -->
+       <!--    <string>Download external proposal attributes (DashCentral.org)</string> -->
+       <!--   </property> -->
+       <!--  </widget> -->
+       <!-- </item> -->
        <item>
         <widget class="QCheckBox" name="chbDontUseFileDialogs">
          <property name="toolTip">

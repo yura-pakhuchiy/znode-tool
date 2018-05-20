@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/Users/blogin/PycharmProjects/DMT-git/src/ui/ui_about_dlg.ui'
+# Form implementation generated from reading ui file 'ui_about_dlg.ui'
 #
 # Created by: PyQt5 UI code generator 5.9.2
 #
@@ -11,7 +11,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_AboutDlg(object):
     def setupUi(self, AboutDlg):
         AboutDlg.setObjectName("AboutDlg")
-        AboutDlg.resize(663, 282)
+        AboutDlg.resize(663, 390)
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(AboutDlg)
         self.verticalLayout_2.setContentsMargins(6, 6, 6, 6)
         self.verticalLayout_2.setObjectName("verticalLayout_2")
@@ -80,21 +80,25 @@ class Ui_AboutDlg(object):
     def retranslateUi(self, AboutDlg):
         _translate = QtCore.QCoreApplication.translate
         AboutDlg.setWindowTitle(_translate("AboutDlg", "Dialog"))
-        self.lblAppName.setText(_translate("AboutDlg", "Dash Masternode Tool"))
+        self.lblAppName.setText(_translate("AboutDlg", "Znode Tool"))
         self.textAbout.setHtml(_translate("AboutDlg", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'Arial\'; font-size:13pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:11pt;\">This application is free for commercial and non-commercial use and is released as open source project.</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:11pt;\"> </span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:11pt; font-weight:600;\">Project\'s GitHub URL:</span><span style=\" font-size:11pt;\"> </span><a href=\"https://github.com/Bertrand256/dash-masternode-tool\"><span style=\" font-size:11pt; text-decoration: underline; color:#0000ff;\">https://github.com/Bertrand256/dash-masternode-tool</span></a><span style=\" font-size:11pt;\"> </span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:11pt; font-weight:600;\">Special thanks to:</span></p>\n"
-"<ul style=\"margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;\"><li style=\" font-size:11pt;\" style=\" margin-top:4px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">chaeplin for <a href=\"https://github.com/chaeplin/dashmnb\"><span style=\" text-decoration: underline; color:#0000ff;\">dashmnb</span></a>, of which parts are used here</li>\n"
-"<li style=\" font-size:11pt;\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Andreas Antonopolous for his excellent technical book <a href=\"http://shop.oreilly.com/product/0636920049524.do\"><span style=\" text-decoration: underline; color:#0000ff;\">Mastering Bitcoin</span></a> (<a href=\"https://github.com/bitcoinbook/bitcoinbook/tree/develop\"><span style=\" text-decoration: underline; color:#0000ff;\">GitHub version</span></a>)</li>\n"
-"<li style=\" font-size:11pt;\" style=\" margin-top:0px; margin-bottom:6px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Vitalik Buterin for <a href=\"https://github.com/vbuterin/pybitcointools\"><span style=\" text-decoration: underline; color:#0000ff;\">pybitcointools</span></a> library, which is used in this app</li></ul>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8.25pt;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:11pt; font-weight:600;\">Author:</span><span style=\" font-size:11pt;\"> Bertrand256 (</span><a href=\"mailto:blogin@protonmail.com\"><span style=\" text-decoration: underline; color:#0000ff;\">blogin@protonmail.com</span></a><span style=\" font-size:11pt;\">)</span></p></body></html>"))
+"</style></head><body style=\" font-family:\'Arial\'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">This application is free for commercial and non-commercial use and is released as open source project.</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"> </p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">Project\'s GitHub URL:</span> <a href=\"https://github.com/yura-pakhuchiy/znode-tool\"><span style=\" text-decoration: underline; color:#0000ff;\">https://github.com/yura-pakhuchiy/znode-tool</span></a> </p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">Special thanks to:</span></p>\n"
+"<ul style=\"margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;\"><li style=\" margin-top:4px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Bertrand256 for <a href=\"https://github.com/Bertrand256/dash-masternode-tool\"><span style=\" text-decoration: underline; color:#0000ff;\">Dash Masternode Tool</span></a> (DMT), on which Znode Tool is based</li>\n"
+"<li style=\" margin-top:4px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">chaeplin for <a href=\"https://github.com/chaeplin/dashmnb\"><span style=\" text-decoration: underline; color:#0000ff;\">dashmnb</span></a>, of which parts are used here</li>\n"
+"<li style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Andreas Antonopolous for his excellent technical book <a href=\"http://shop.oreilly.com/product/0636920049524.do\"><span style=\" text-decoration: underline; color:#0000ff;\">Mastering Bitcoin</span></a> (<a href=\"https://github.com/bitcoinbook/bitcoinbook/tree/develop\"><span style=\" text-decoration: underline; color:#0000ff;\">GitHub version</span></a>)</li>\n"
+"<li style=\" margin-top:0px; margin-bottom:6px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Vitalik Buterin for <a href=\"https://github.com/vbuterin/pybitcointools\"><span style=\" text-decoration: underline; color:#0000ff;\">pybitcointools</span></a> library, which is used in this app</li></ul>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">DMT Author:</span> Bertrand256 (<a href=\"mailto:blogin@protonmail.com\"><span style=\" text-decoration: underline; color:#0000ff;\">blogin@protonmail.com</span></a>)</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">Zcoin port by: </span>Yura Pakhuchiy (<a href=\"mailto:pakhuchiy@gmail.com\"><span style=\" text-decoration: underline; color:#0000ff;\">pakhuchiy@gmail.com</span></a>)</p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">Donate Zcoin: </span><a href=\"zcoin:aPLYJHejwgDzvJLP44pHASFfabtsqiTKDq\"><span style=\" text-decoration: underline; color:#0000ff;\">aPLYJHejwgDzvJLP44pHASFfabtsqiTKDq</span></a></p></body></html>"))
         self.btnClose.setText(_translate("AboutDlg", "Close"))
 
 

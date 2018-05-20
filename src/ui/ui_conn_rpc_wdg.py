@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/Users/blogin/PycharmProjects/DMT-git/src/ui/ui_conn_rpc_wdg.ui'
+# Form implementation generated from reading ui file 'ui_conn_rpc_wdg.ui'
 #
 # Created by: PyQt5 UI code generator 5.9.2
 #

@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import argparse
 import os
@@ -36,7 +36,7 @@ if __name__ == '__main__':
     ui.show()
 
     try:
-        ico_path = os.path.join(app_path, 'img', 'dmt.ico')
+        ico_path = os.path.join(app_path, 'img', 'znode-tool.ico')
         if os.path.exists(ico_path):
             app_icon = QIcon(ico_path)
             app.setWindowIcon(app_icon)

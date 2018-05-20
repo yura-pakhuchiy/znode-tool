@@ -155,7 +155,7 @@ class SendFundsDestinationItem(QObject):
                 self.lbl_second_unit_value.setText('')
         elif self.values_unit == OUTPUT_VALUE_UNIT_PERCENT:
             if self.value_amount is not None:
-                self.lbl_second_unit_value.setText(app_utils.to_string(round(self.value_amount, 8)) + ' Dash')
+                self.lbl_second_unit_value.setText(app_utils.to_string(round(self.value_amount, 8)) + ' XZC')
             else:
                 self.lbl_second_unit_value.setText('')
 
@@ -388,7 +388,7 @@ class SendFundsDestination(QtWidgets.QWidget, WndUtils):
 
         # the last row of the grid layout is dedicated to 'fee' controls
         self.lbl_fee = QLabel(self.scroll_area_widget)
-        self.lbl_fee.setText('Fee [Dash]')
+        self.lbl_fee.setText('Fee [XZC]')
         self.lbl_fee.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
         self.lay_addresses.addWidget(self.lbl_fee, 1, 0)
 
@@ -410,13 +410,13 @@ class SendFundsDestination(QtWidgets.QWidget, WndUtils):
         self.lay_fee_value.addStretch(0)
 
         # instant send
-        self.lbl_instant_send = QLabel(self.scroll_area_widget)
-        self.lbl_instant_send.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
-        self.lbl_instant_send.setText('Use InstantSend')
-        self.chb_instant_send = QCheckBox(self.scroll_area_widget)
-        self.chb_instant_send.toggled.connect(self.on_chb_instant_send_toggled)
-        self.lay_addresses.addWidget(self.lbl_instant_send, 2, 0)
-        self.lay_addresses.addWidget(self.chb_instant_send, 2, 1)
+        # self.lbl_instant_send = QLabel(self.scroll_area_widget)
+        # self.lbl_instant_send.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
+        # self.lbl_instant_send.setText('Use InstantSend')
+        # self.chb_instant_send = QCheckBox(self.scroll_area_widget)
+        # self.chb_instant_send.toggled.connect(self.on_chb_instant_send_toggled)
+        # self.lay_addresses.addWidget(self.lbl_instant_send, 2, 0)
+        # self.lay_addresses.addWidget(self.chb_instant_send, 2, 1)
 
         # below the addresses grid place a label dedicated do display messages
         self.lbl_message = QLabel(Form)
@@ -713,7 +713,7 @@ class SendFundsDestination(QtWidgets.QWidget, WndUtils):
             the_change_first_unit_str = app_utils.to_string(round(self.change_amount, 8))
         else:
             # pct
-            the_change_second_unit_str = app_utils.to_string(self.change_amount) + ' Dash'
+            the_change_second_unit_str = app_utils.to_string(self.change_amount) + ' XZC'
             if self.inputs_total_amount - self.fee_amount - self.add_to_fee > 0:
                 change_pct = (self.change_amount * 100) / (self.inputs_total_amount - self.fee_amount - self.add_to_fee)
             else:
@@ -737,14 +737,14 @@ class SendFundsDestination(QtWidgets.QWidget, WndUtils):
     def on_edt_fee_value_textChanged(self, text):
         self.debounce_call('fee_value', self.read_fee_value_from_ui, 400)
 
-    @pyqtSlot(bool)
-    def on_chb_instant_send_toggled(self, checked):
-        self.use_instant_send = checked
-        if self.values_unit == OUTPUT_VALUE_UNIT_AMOUNT and len(self.recipients) >= 1:
-            self.update_fee()
-            self.use_all_funds_for_address(self.recipients[0])
-        else:
-            self.update_change_and_fee()
+    # @pyqtSlot(bool)
+    # def on_chb_instant_send_toggled(self, checked):
+    #     self.use_instant_send = checked
+    #     if self.values_unit == OUTPUT_VALUE_UNIT_AMOUNT and len(self.recipients) >= 1:
+    #         self.update_fee()
+    #         self.use_all_funds_for_address(self.recipients[0])
+    #     else:
+    #         self.update_change_and_fee()
 
     def show_hide_change_address(self, visible):
         if visible != self.change_controls_visible:
@@ -882,7 +882,7 @@ class SendFundsDestination(QtWidgets.QWidget, WndUtils):
     def display_totals(self):
         recipients = self.get_number_of_recipients()
         bytes = (self.inputs_count * 148) + (recipients * 34) + 10
-        text = f'<span class="label"><b>Total value of selected inputs:</b>&nbsp;</span><span class="value">&nbsp;{self.inputs_total_amount} Dash&nbsp;</span>'
+        text = f'<span class="label"><b>Total value of selected inputs:</b>&nbsp;</span><span class="value">&nbsp;{self.inputs_total_amount} XZC&nbsp;</span>'
         if self.inputs_total_amount > 0:
             text += f'<span class="label">&nbsp;<b>Inputs:</b>&nbsp;</span><span class="value">&nbsp;{self.inputs_count}&nbsp;</span>' \
                     f'<span class="label">&nbsp;<b>Outputs:</b>&nbsp;</span><span class="value">&nbsp;{recipients}&nbsp;</span>' \

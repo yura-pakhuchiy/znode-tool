@@ -4,10 +4,10 @@
 # Created on: 2018-03
 
 
-APP_NAME_SHORT = 'DashMasternodeTool'
-APP_NAME_LONG = 'Dash Masternode Tool'
-APP_DATA_DIR_NAME = '.dmt'
-PROJECT_URL = 'https://github.com/Bertrand256/dash-masternode-tool'
+APP_NAME_SHORT = 'ZnodeTool'
+APP_NAME_LONG = 'Znode Tool'
+APP_DATA_DIR_NAME = '.znode-tool'
+PROJECT_URL = 'https://github.com/yura-pakhuchiy/znode-tool'
 FEE_DUFF_PER_BYTE = 1
 MIN_TX_FEE = 1000
 SCREENSHOT_MODE = False

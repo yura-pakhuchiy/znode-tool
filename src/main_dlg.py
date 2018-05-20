@@ -386,7 +386,7 @@ class MainWindow(QMainWindow, WndUtils, ui_main_dlg.Ui_MainWindow):
             cur_date_str = datetime.datetime.now().strftime('%Y-%m-%d')
 
             response = urllib.request.urlopen(
-                'https://raw.githubusercontent.com/Bertrand256/dash-masternode-tool/master/version.txt')
+                'https://raw.githubusercontent.com/yura-pakhuchiy/znode-tool/master/version.txt')
             contents = response.read()
             lines = contents.decode().splitlines()
             remote_version_str = app_utils.extract_app_version(lines)
@@ -538,10 +538,10 @@ class MainWindow(QMainWindow, WndUtils, ui_main_dlg.Ui_MainWindow):
                         self.is_dashd_syncing = False
                         self.show_connection_successful()
                         break
-                    mnsync = self.dashd_intf.mnsync()
-                    self.setMessage('Dashd is synchronizing: AssetID: %s, AssetName: %s' %
-                                        (str(mnsync.get('AssetID', '')),
-                                         str(mnsync.get('AssetName', ''))
+                    znsync = self.dashd_intf.znsync()
+                    self.setmessage('Zcoin daemon is synchronizing: assetid: %s, assetname: %s' %
+                                        (str(znsync.get('AssetID', '')),
+                                         str(znsync.get('AssetName', ''))
                                          ), style='{background-color:rgb(255,128,0);color:white;padding:3px 5px 3px 5px; border-radius:3px}')
                     cond.wait(mtx, 5000)
                 self.setMessage('')
@@ -627,7 +627,7 @@ class MainWindow(QMainWindow, WndUtils, ui_main_dlg.Ui_MainWindow):
 
             if self.dashd_connection_ok:
                 if self.is_dashd_syncing:
-                    self.infoMsg('Connection successful, but Dash daemon is synchronizing.')
+                    self.infoMsg('Connection successful, but Zcoin daemon is synchronizing.')
                 else:
                     self.infoMsg('Connection successful.')
             else:
@@ -736,7 +736,7 @@ class MainWindow(QMainWindow, WndUtils, ui_main_dlg.Ui_MainWindow):
                         self.config.hw_coin_name = ''
                         if self.config.hw_type in (HWType.trezor, HWType.keepkey):
                             for coin in self.hw_client.features.coins:
-                                if coin.coin_name.upper() == 'DASH TESTNET' or coin.coin_shortcut.upper() == 'TDASH':
+                                if coin.coin_name.upper() == 'ZCOIN TESTNET':
                                     found_testnet_support = True
                                     self.config.hw_coin_name = coin.coin_name
                                     break
@@ -748,7 +748,7 @@ class MainWindow(QMainWindow, WndUtils, ui_main_dlg.Ui_MainWindow):
 
                         if not found_testnet_support:
                             url = get_note_url('DMT0002')
-                            msg = f'Your hardware wallet device does not support Dash TESTNET ' \
+                            msg = f'Your hardware wallet device does not support Zcoin TESTNET ' \
                                   f'(<a href="{url}">see details</a>).'
                             self.errorMsg(msg)
                             try:
@@ -758,7 +758,7 @@ class MainWindow(QMainWindow, WndUtils, ui_main_dlg.Ui_MainWindow):
                             self.setStatus2Text(msg, 'red')
                             return
                     else:
-                        self.config.hw_coin_name = 'Dash'
+                        self.config.hw_coin_name = 'Zcoin'
 
                     logging.info('Connected to a hardware wallet')
                     self.setStatus2Text('<b>HW status:</b> connected to %s' % hw_intf.get_hw_label(self.hw_client),
@@ -842,7 +842,7 @@ class MainWindow(QMainWindow, WndUtils, ui_main_dlg.Ui_MainWindow):
         if self.curMasternode:
             msg = QMessageBox()
             msg.setIcon(QMessageBox.Warning)
-            msg.setText('Do you really want to delete current masternode configuration?')
+            msg.setText('Do you really want to delete current Znode configuration?')
             msg.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
             msg.setDefaultButton(QMessageBox.No)
             retval = msg.exec_()
@@ -971,7 +971,7 @@ class MainWindow(QMainWindow, WndUtils, ui_main_dlg.Ui_MainWindow):
         """
 
         file_name = self.open_file_query(self,
-                                         message='Enter the path to the masternode.conf configuration file',
+                                         message='Enter the path to the znode.conf configuration file',
                                          directory='', filter="All Files (*);;Conf files (*.conf)",
                                          initial_filter="Conf files (*.conf)")
 
@@ -1009,7 +1009,7 @@ class MainWindow(QMainWindow, WndUtils, ui_main_dlg.Ui_MainWindow):
                                         in_mn.port = ipelems[1]
                                     else:
                                         in_mn.ip = mn_ipport
-                                        in_mn.port = '9999'
+                                        in_mn.port = '8168'
                                     in_mn.privateKey = mn_privkey
                                     in_mn.collateralAddress = mn_dash_addr
                                     in_mn.collateralTx = mn_tx_hash
@@ -1020,7 +1020,7 @@ class MainWindow(QMainWindow, WndUtils, ui_main_dlg.Ui_MainWindow):
                                 if mn:
                                     msg = QMessageBox()
                                     msg.setIcon(QMessageBox.Information)
-                                    msg.setText('Masternode ' + mn_name + ' exists. Overwrite?')
+                                    msg.setText('Znode ' + mn_name + ' exists. Overwrite?')
                                     msg.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
                                     msg.setDefaultButton(QMessageBox.Yes)
                                     retval = msg.exec_()
@@ -1052,7 +1052,7 @@ class MainWindow(QMainWindow, WndUtils, ui_main_dlg.Ui_MainWindow):
                         if modified:
                             self.update_edit_controls_state()
                         if imported_cnt:
-                            msg_text = 'Successfully imported %s masternode(s)' % str(imported_cnt)
+                            msg_text = 'Successfully imported %s Znode(s)' % str(imported_cnt)
                             if skipped_cnt:
                                 msg_text += ', skipped: %s' % str(skipped_cnt)
                             msg_text += ".\n\nIf you want to scan your " + self.getHwName() + \
@@ -1090,7 +1090,7 @@ class MainWindow(QMainWindow, WndUtils, ui_main_dlg.Ui_MainWindow):
                                                  'missing paths.')
 
                         elif skipped_cnt:
-                            self.infoMsg('Operation finished with no imported and %s skipped masternodes.'
+                            self.infoMsg('Operation finished with no imported and %s skipped Znodes.'
                                          % str(skipped_cnt))
 
                 except Exception as e:
@@ -1139,7 +1139,7 @@ class MainWindow(QMainWindow, WndUtils, ui_main_dlg.Ui_MainWindow):
         if copy_values_from_current and cur_masternode_sav:
             mn_template = cur_masternode_sav.name
         else:
-            mn_template = 'MN'
+            mn_template = 'ZN'
         name_found = None
         for nr in range(1, 100):
             exists = False
@@ -1321,7 +1321,7 @@ class MainWindow(QMainWindow, WndUtils, ui_main_dlg.Ui_MainWindow):
                 paths, user_cancelled = self.scan_hw_for_bip32_paths([self.curMasternode.collateralAddress])
                 if not user_cancelled:
                     if not paths or len(paths) == 0:
-                        self.errorMsg("Couldn't find Dash address in your hardware wallet. If you are using HW passphrase, "
+                        self.errorMsg("Couldn't find Zcoin address in your hardware wallet. If you are using HW passphrase, "
                                       "make sure, that you entered the correct one.")
                     else:
                         self.edtMnCollateralBip32Path.setText(paths.get(self.curMasternode.collateralAddress, ''))
@@ -1359,31 +1359,31 @@ class MainWindow(QMainWindow, WndUtils, ui_main_dlg.Ui_MainWindow):
                 return
 
             if not re.match('\d{1,4}', self.curMasternode.port):
-                self.errorMsg("Invalid masternode's TCP port number.")
+                self.errorMsg("Invalid Znode's TCP port number.")
                 return
 
             if not re.match('\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}', self.curMasternode.ip):
-                self.errorMsg("Invalid masternode's IP address.")
+                self.errorMsg("Invalid Znode's IP address.")
                 return
 
             if not self.curMasternode.privateKey:
-                self.errorMsg("Masternode's private key not set.")
+                self.errorMsg("Znode's private key not set.")
                 return
         else:
-            self.errorMsg("No masternode selected.")
+            self.errorMsg("No Znode selected.")
 
         self.checkDashdConnection(wait_for_check_finish=True)
         if not self.dashd_connection_ok:
-            self.errorMsg("Connection to Dash daemon is not established.")
+            self.errorMsg("Connection to Zcoin daemon is not established.")
             return
         if self.is_dashd_syncing:
-            self.warnMsg("Dash daemon to which you are connected is synchronizing. You have to wait "
+            self.warnMsg("Zcoin daemon to which you are connected is synchronizing. You have to wait "
                          "until it's finished.")
             return
 
         mn_status, _ = self.get_masternode_status(self.curMasternode)
         if mn_status in ('ENABLED', 'PRE_ENABLED'):
-            if self.queryDlg("Warning: masternode state is %s. \n\nDo you really want to sent 'Start masternode' "
+            if self.queryDlg("Warning: Znode state is %s. \n\nDo you really want to sent 'Start Znode' "
                              "message? " % mn_status, default_button=QMessageBox.Cancel,
                              icon=QMessageBox.Warning) == QMessageBox.Cancel:
                 return
@@ -1391,7 +1391,7 @@ class MainWindow(QMainWindow, WndUtils, ui_main_dlg.Ui_MainWindow):
         try:
             mn_privkey = dash_utils.wif_to_privkey(self.curMasternode.privateKey, self.config.dash_network)
             if not mn_privkey:
-                self.errorMsg('Cannot convert masternode private key')
+                self.errorMsg('Cannot convert Znode private key')
                 return
             mn_pubkey = bitcoin.privkey_to_pubkey(mn_privkey)
 
@@ -1424,7 +1424,7 @@ class MainWindow(QMainWindow, WndUtils, ui_main_dlg.Ui_MainWindow):
                 self.update_edit_controls_state()
             elif hw_collateral_address != cfg_collateral_address:
                 # verify config's collateral addres with hardware wallet
-                if self.queryDlg(message="The Dash address retrieved from the hardware wallet (%s) for the configured "
+                if self.queryDlg(message="The Zcoin address retrieved from the hardware wallet (%s) for the configured "
                                          "BIP32 path does not match the collateral address entered in the "
                                          "configuration: %s.\n\n"
                                          "Do you really want to continue?" %
@@ -1447,7 +1447,7 @@ class MainWindow(QMainWindow, WndUtils, ui_main_dlg.Ui_MainWindow):
                 if found:
                     if utxo.get('satoshis', None) != 100000000000:
                         if self.queryDlg(
-                                message="Collateral transaction output should equal 100000000000 Satoshis (1000 Dash)"
+                                message="Collateral transaction output should equal 100000000000 Satoshis (1000 XZC)"
                                         ", but its value is: %d Satoshis.\n\nDo you really want to continue?"
                                         % (utxo['satoshis']),
                                 buttons=QMessageBox.Yes | QMessageBox.Cancel,
@@ -1485,8 +1485,11 @@ class MainWindow(QMainWindow, WndUtils, ui_main_dlg.Ui_MainWindow):
 
             info = self.dashd_intf.getinfo(verify_node=True)
             node_protocol_version = int(info['protocolversion'])
+            node_blocks = int(info['blocks'])
             if self.curMasternode.use_default_protocol_version or not self.curMasternode.protocol_version:
                 protocol_version = node_protocol_version
+                if protocol_version == 90025 and node_blocks < 89300:
+                    protocol_version = 90024
             else:
                 protocol_version = self.curMasternode.protocol_version
 
@@ -1528,20 +1531,20 @@ class MainWindow(QMainWindow, WndUtils, ui_main_dlg.Ui_MainWindow):
                    + dash_utils.num_to_varint(len(sig2) / 2).hex() + sig2
 
             work = '01' + work
-            if node_protocol_version >= 70208:
-                work = work + '0001000100'
+            # if node_protocol_version >= 70208:
+            #     work = work + '0001000100'
 
-            ret = self.dashd_intf.masternodebroadcast("decode", work)
-            if ret['overall'].startswith('Successfully decoded broadcast messages for 1 masternodes'):
-                if self.queryDlg(f'Press "Yes" if you want to broadcast start masternode message (protocol version: '
+            ret = self.dashd_intf.znodebroadcast("decode", work)
+            if ret['overall'].startswith('Successfully decoded broadcast messages for 1 znodes'):
+                if self.queryDlg(f'Press "Yes" if you want to broadcast start znode message (protocol version: '
                                  f'{protocol_version}) or "Cancel" to exit.',
                                 buttons=QMessageBox.Yes | QMessageBox.Cancel,
                                 default_button=QMessageBox.Yes, icon=QMessageBox.Information) == QMessageBox.Cancel:
                     return
 
-                ret = self.dashd_intf.masternodebroadcast("relay", work)
+                ret = self.dashd_intf.znodebroadcast("relay", work)
 
-                match = re.search("relayed broadcast messages for (\d+) masternodes.*failed to relay (\d+), total 1",
+                match = re.search("relayed broadcast messages for (\d+) znodes.*failed to relay (\d+), total 1",
                                   ret['overall'])
 
                 failed_count = 0
@@ -1563,7 +1566,7 @@ class MainWindow(QMainWindow, WndUtils, ui_main_dlg.Ui_MainWindow):
                 if failed_count == 0:
                     self.infoMsg(overall)
                 else:
-                    self.errorMsg('Failed to start masternode.\n\nResponse from Dash daemon: %s.' % errorMessage)
+                    self.errorMsg('Failed to start znode.\n\nResponse from Zcoin daemon: %s.' % errorMessage)
             else:
                 logging.error('Start MN error: ' + str(ret))
                 errorMessage = ret[list(ret.keys())[0]].get('errorMessage')
@@ -1585,14 +1588,14 @@ class MainWindow(QMainWindow, WndUtils, ui_main_dlg.Ui_MainWindow):
         """
         if self.dashd_connection_ok:
             collateral_id = masternode.collateralTx + '-' + masternode.collateralTxIndex
-            mns_info = self.dashd_intf.get_masternodelist('full', collateral_id)
+            mns_info = self.dashd_intf.get_znodelist('full', collateral_id)
             if len(mns_info):
                 protocol_version = mns_info[0].protocol
                 if isinstance(protocol_version, str):
                     try:
                         protocol_version = int(protocol_version)
                     except:
-                        logging.warning('Invalid masternode protocol version: ' + str(protocol_version))
+                        logging.warning('Invalid Znode protocol version: ' + str(protocol_version))
                 return (mns_info[0].status, protocol_version)
         return '???', None
 
@@ -1602,7 +1605,7 @@ class MainWindow(QMainWindow, WndUtils, ui_main_dlg.Ui_MainWindow):
         """
 
         if self.dashd_connection_ok:
-            collateral_id = self.curMasternode.collateralTx + '-' + self.curMasternode.collateralTxIndex
+            collateral_id = 'COutPoint(' + self.curMasternode.collateralTx + ', ' + self.curMasternode.collateralTxIndex + ')'
 
             if not self.curMasternode.collateralTx:
                 return '<span style="color:red">Enter the collateral TX ID</span>'
@@ -1610,7 +1613,7 @@ class MainWindow(QMainWindow, WndUtils, ui_main_dlg.Ui_MainWindow):
             if not self.curMasternode.collateralTxIndex:
                 return '<span style="color:red">Enter the collateral TX index</span>'
 
-            mns_info = self.dashd_intf.get_masternodelist('full', data_max_age=120)  # read new data from the network
+            mns_info = self.dashd_intf.get_znodelist('full', data_max_age=120)  # read new data from the network
                                                                                      # every 120 seconds
             mn_info = self.dashd_intf.masternodes_by_ident.get(collateral_id)
             if mn_info:
@@ -1667,7 +1670,7 @@ class MainWindow(QMainWindow, WndUtils, ui_main_dlg.Ui_MainWindow):
                          f'<tr><td class="title">Queue/Count:</td><td class="value" colspan="2">{str(mn_info.queue_position)}/{enabled_mns_count}</td></tr>' \
                          '</table>'
             else:
-                status = '<span style="color:red">Masternode not found.</span>'
+                status = '<span style="color:red">Znode not found.</span>'
         else:
             status = '<span style="color:red">Problem with connection to dashd.</span>'
         return status
@@ -1678,7 +1681,7 @@ class MainWindow(QMainWindow, WndUtils, ui_main_dlg.Ui_MainWindow):
             self.btnRefreshMnStatus.setEnabled(True)
             self.btnBroadcastMn.setEnabled(True)
 
-        self.lblMnStatus.setText('<b>Retrieving masternode information, please wait...<b>')
+        self.lblMnStatus.setText('<b>Retrieving Znode information, please wait...<b>')
         self.btnRefreshMnStatus.setEnabled(False)
         self.btnBroadcastMn.setEnabled(False)
 
@@ -1691,7 +1694,7 @@ class MainWindow(QMainWindow, WndUtils, ui_main_dlg.Ui_MainWindow):
                 self.lblMnStatus.setText('')
                 raise
         else:
-            self.errorMsg('Dash daemon not connected')
+            self.errorMsg('Zcoin daemon not connected')
 
     @pyqtSlot(bool)
     def on_action_transfer_funds_for_cur_mn_triggered(self):
@@ -1701,17 +1704,17 @@ class MainWindow(QMainWindow, WndUtils, ui_main_dlg.Ui_MainWindow):
         if self.curMasternode:
             src_addresses = []
             if not self.curMasternode.collateralBip32Path:
-                self.errorMsg("Enter the masternode collateral BIP32 path. You can use the 'right arrow' button "
+                self.errorMsg("Enter the Znode collateral BIP32 path. You can use the 'right arrow' button "
                               "on the right of the 'Collateral' edit box.")
             elif not self.curMasternode.collateralAddress:
-                self.errorMsg("Enter the masternode collateral Dash address. You can use the 'left arrow' "
+                self.errorMsg("Enter the Znode collateral Zcoin address. You can use the 'left arrow' "
                               "button on the left of the 'BIP32 path' edit box.")
             else:
                 src_addresses.append((self.curMasternode.collateralAddress, self.curMasternode.collateralBip32Path))
                 mn_index = self.config.masternodes.index(self.curMasternode)
                 self.show_wallet_window(mn_index)
         else:
-            self.errorMsg('No masternode selected')
+            self.errorMsg('No Znode selected')
 
     @pyqtSlot(bool)
     def on_action_transfer_funds_for_all_mns_triggered(self):
@@ -1736,7 +1739,7 @@ class MainWindow(QMainWindow, WndUtils, ui_main_dlg.Ui_MainWindow):
           if the value is None, show the default utxo source type
         """
         if not self.dashd_intf.open():
-            self.errorMsg('Dash daemon not connected')
+            self.errorMsg('Zcoin daemon not connected')
         else:
             ui = send_payout_dlg.WalletDlg(self, initial_mn_sel=initial_mn)
             ui.exec_()
@@ -1747,13 +1750,13 @@ class MainWindow(QMainWindow, WndUtils, ui_main_dlg.Ui_MainWindow):
             self.connect_hardware_wallet()
             if self.hw_client:
                 if not self.curMasternode.collateralBip32Path:
-                    self.errorMsg("Empty masternode's collateral BIP32 path")
+                    self.errorMsg("Empty Znode's collateral BIP32 path")
                 else:
                     ui = SignMessageDlg(self, self.curMasternode.collateralBip32Path,
                                         self.curMasternode.collateralAddress)
                     ui.exec_()
         else:
-            self.errorMsg("To sign messages, you must select a masternode.")
+            self.errorMsg("To sign messages, you must select a Znode.")
 
     @pyqtSlot(bool)
     def on_action_hw_configuration_triggered(self):

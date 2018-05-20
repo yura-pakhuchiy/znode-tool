@@ -44,7 +44,7 @@ class PaymentTableModel(QAbstractTableModel):
         self.parent_wnd = parent_wnd
         self.columns = [
             # field_name, column header, visible, default col width
-            ('satoshis', 'Amount (Dash)', True, 100),
+            ('satoshis', 'Amount (Zcoin)', True, 100),
             ('confirmations', 'Confirmations', True, 100),
             ('bip32_path', 'Path', True, 100),
             ('time_str', 'TX Date/Time', True, 140),
@@ -317,7 +317,7 @@ class WalletDlg(QDialog, ui_send_payout_dlg.Ui_SendPayoutDlg, WndUtils):
             mn_label = mn.name
             self.cbo_src_masternodes.addItem(mn_label)
         if len(self.masternodes) > 1:
-            self.cbo_src_masternodes.addItem('<All Masternodes>')
+            self.cbo_src_masternodes.addItem('<All Znodes>')
         self.cbo_src_masternodes.blockSignals(False)
 
         if isinstance(self.initial_mn_sel, int):
@@ -659,8 +659,8 @@ class WalletDlg(QDialog, ui_send_payout_dlg.Ui_SendPayoutDlg, WndUtils):
                 logging.info(f'UTXO satosis: {utxo["satoshis"]}')
                 if utxo['collateral']:
                     if self.queryDlg(
-                            "Warning: you are going to transfer masternode's collateral (1000 Dash) transaction "
-                            "output. Proceeding will result in broken masternode.\n\n"
+                            "Warning: you are going to transfer Znode's collateral (1000 ZXC) transaction "
+                            "output. Proceeding will result in broken Znode.\n\n"
                             "Do you really want to continue?",
                             buttons=QMessageBox.Yes | QMessageBox.Cancel,
                             default_button=QMessageBox.Cancel, icon=QMessageBox.Warning) == QMessageBox.Cancel:
@@ -678,7 +678,7 @@ class WalletDlg(QDialog, ui_send_payout_dlg.Ui_SendPayoutDlg, WndUtils):
                     addr_hw = get_address(self.main_ui.hw_session, bip32_path)
                     bip32_to_address[bip32_path] = addr_hw
                 if addr_hw != utxo['address']:
-                    self.errorMsg("<html style=\"font-weight:normal\">Dash address inconsistency between UTXO (%d) and HW path: %s.<br><br>"
+                    self.errorMsg("<html style=\"font-weight:normal\">Zcoin address inconsistency between UTXO (%d) and HW path: %s.<br><br>"
                                  "<b>HW address</b>: %s<br>"
                                  "<b>UTXO address</b>: %s<br><br>"
                                  "Cannot continue.</html>" %
@@ -771,16 +771,16 @@ class WalletDlg(QDialog, ui_send_payout_dlg.Ui_SendPayoutDlg, WndUtils):
             if self.utxo_src_mode == 1:
                 if self.mn_src_index is not None and self.mn_src_index < len(self.masternode_addresses) and \
                         self.mn_src_index >= 0:
-                    msg = f'<b>Balance:</b> {self.sel_addresses_balance} Dash&nbsp;&nbsp;&nbsp;<b>Received:</b> {self.sel_addresses_received} Dash&nbsp;&nbsp;&nbsp;<b>Address:</b> {self.masternode_addresses[self.mn_src_index][0]}'
+                    msg = f'<b>Balance:</b> {self.sel_addresses_balance} XZC&nbsp;&nbsp;&nbsp;<b>Received:</b> {self.sel_addresses_received} XZC&nbsp;&nbsp;&nbsp;<b>Address:</b> {self.masternode_addresses[self.mn_src_index][0]}'
                     self.set_message_2(msg)
                 else:
-                    msg = f'<b>Balance:</b> {self.sel_addresses_balance} Dash&nbsp;&nbsp;&nbsp;<b>Received:</b> {self.sel_addresses_received} Dash'
+                    msg = f'<b>Balance:</b> {self.sel_addresses_balance} XZC&nbsp;&nbsp;&nbsp;<b>Received:</b> {self.sel_addresses_received} XZC'
                     self.set_message_2(msg)
             elif self.utxo_src_mode == 2:
-                msg = f'<b>Balance:</b> {self.sel_addresses_balance} Dash&nbsp;&nbsp;&nbsp;<b>Received:</b> {self.sel_addresses_received} Dash'
+                msg = f'<b>Balance:</b> {self.sel_addresses_balance} XZC&nbsp;&nbsp;&nbsp;<b>Received:</b> {self.sel_addresses_received} XZC'
                 self.set_message_2(msg)
             elif self.utxo_src_mode in (1, 3):
-                msg = f'<b>Balance:</b> {self.sel_addresses_balance} Dash&nbsp;&nbsp;&nbsp;<b>Received:</b> {self.sel_addresses_received} Dash&nbsp;&nbsp;&nbsp;<b>Address:</b> {self.hw_src_address}'
+                msg = f'<b>Balance:</b> {self.sel_addresses_balance} XZC&nbsp;&nbsp;&nbsp;<b>Received:</b> {self.sel_addresses_received} XZC&nbsp;&nbsp;&nbsp;<b>Address:</b> {self.hw_src_address}'
                 self.set_message_2(msg)
 
             cur_utxos_src_hash = self.get_utxo_src_cfg_hash()
@@ -951,7 +951,7 @@ class WalletDlg(QDialog, ui_send_payout_dlg.Ui_SendPayoutDlg, WndUtils):
                 raise
 
         if not self.dashd_intf.open():
-            self.errorMsg('Dash daemon not connected')
+            self.errorMsg('Zcoin daemon not connected')
         else:
             tm_begin = time.time()
             try:
