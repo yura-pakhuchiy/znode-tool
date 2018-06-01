@@ -700,14 +700,14 @@ class ConfigDlg(QDialog, Ui_ConfigDlg, WndUtils):
                 self.disable_cfg_update = True
                 if isinstance(dashd_conf, tuple) and len(dashd_conf) >= 3:
                     if not dashd_conf[0]:
-                        self.infoMsg('Remore Dash daemon seems to be shut down')
+                        self.infoMsg('Remore Zcoin daemon seems to be shut down')
                     elif not dashd_conf[1]:
-                        self.infoMsg('Could not find remote dashd.conf file')
+                        self.infoMsg('Could not find remote zcoin.conf file')
                     else:
                         file = dashd_conf[2]
                         rpcuser = file.get('rpcuser', '')
                         rpcpassword = file.get('rpcpassword', '')
-                        rpcport = file.get('rpcport', '9998')
+                        rpcport = file.get('rpcport', '18888' if self.local_config.is_testnet() else '8888')
                         modified = False
                         if rpcuser:
                             modified = modified or (self.current_network_cfg.username != rpcuser)
@@ -737,7 +737,7 @@ class ConfigDlg(QDialog, Ui_ConfigDlg, WndUtils):
                                          "not work.")
                     self.update_connection_details_ui()
                 elif isinstance(dashd_conf, str):
-                    self.warnMsg("Couldn't read remote dashd configuration file due the following error: " +
+                    self.warnMsg("Couldn't read remote zcoind configuration file due the following error: " +
                                  dashd_conf)
                 ssh.disconnect()
             except Exception as e:

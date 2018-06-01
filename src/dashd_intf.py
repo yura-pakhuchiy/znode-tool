@@ -280,9 +280,9 @@ class DashdSSH(object):
         try:
             # find dashd process id if running
             try:
-                pids = self.remote_command('ps -C "dashd" -o pid')
+                pids = self.remote_command('ps -C "zcoind" -o pid')
             except UnknownError:
-                raise Exception('is dashd running on the remote machine?')
+                raise Exception('is zcoind running on the remote machine?')
             pid = None
             if isinstance(pids, list):
                 pids = [pid.strip() for pid in pids]

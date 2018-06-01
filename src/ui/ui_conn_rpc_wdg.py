@@ -23,6 +23,7 @@ class Ui_RpcConnection(object):
         self.edtRpcUsername.setObjectName("edtRpcUsername")
         self.gridLayout.addWidget(self.edtRpcUsername, 2, 1, 1, 1)
         self.chbRpcSSL = QtWidgets.QCheckBox(RpcConnection)
+        self.chbRpcSSL.setVisible(False)
         self.chbRpcSSL.setObjectName("chbRpcSSL")
         self.gridLayout.addWidget(self.chbRpcSSL, 4, 0, 1, 2)
         self.horizontalLayout_5 = QtWidgets.QHBoxLayout()
