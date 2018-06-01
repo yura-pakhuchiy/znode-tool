@@ -79,6 +79,10 @@ a = Analysis(['src/znode_tool.py'],
 pyz = PYZ(a.pure, a.zipped_data,
              cipher=block_cipher)
 
+# Workaround for Ubuntu 16.04 and newer
+# https://github.com/fman-users/fman/issues/119
+a.binaries = a.binaries - [('libdrm.so.2', None, None)]
+
 exe = EXE(pyz,
           a.scripts,
           a.binaries,

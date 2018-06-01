@@ -1,0 +1,17 @@
+language: python
+python:
+- '3.6'
+addons:
+  apt:
+    packages: libudev-dev libusb-1.0-0-dev libfox-1.6-dev
+script: pyinstaller znode-tool.spec
+deploy:
+  provider: releases
+  api_key:
+    secure: XuAVHmFWAB0IionyqvrRSpGFJlezJKHrwxXqqcpT+49sEzdhk9gOyV87QPP8/jADPMZbrzotONr2it9lqLosA34lohTtWPtUCgROSbRZYUbMUxWlI+K26k3P3U1wCbV22sx/PzC1C0EYQ6IcA4nxkDPxi9rd5nrbdXRCxvAAUFteMhYo28dnXfZ4WJFJmuVesF2hBZYbi0xx1x7vCSyDx3HHWSrDBS2rugMuxLZDivgcBjyhv1dbuArGnjbrUzlp3iu0nVx53+rBfG5x+3sdM4CZti2quAvv9WMCoe73OEViwqdWzXxgEgMkfj8R6FTdFVG491FLX1oCQdhSreVAucp+Crmhfuct+gewrGXs0XrVNog7fGWIMfwR+3YL3JZdPD5nf+tJIsOIn2VAkGzCU9VtqfavYmlgsIun6IB5CT3vu/4DtUiOO8dxwUHVFuQ5JDRmnskoHXm3FqRuzl7tzure5HF0i5e1RSVmv67YDcvEAygdlCEpxxzgxVy+cLU0CAD7jqlvxeh7XtDa8JiWMbq00aNSQ+wNQ/8FuB9FeEKpgF4a6ia8Hd3U2YJQVxP1PG1gIF8Iu1WXSI07hjuhZ8YDy1qDd8VksmDt0kv1jn+1klPX+4fBkcaRuLiV1HoungLUZkSWTEp3LlQtrbaahIExLYXDyzO91ufeFJXeO3E=
+  skip_cleanup: true
+  file_glob: true
+  file: all/ZnodeTool_*.linux.tar.gz
+  on:
+    tags: true
+    # repo: yura-pakhuchiy/znode-tool
