@@ -151,11 +151,11 @@ class AppConfig(object):
             home_dir = os.path.expanduser('~')
 
             app_user_dir = os.path.join(home_dir, APP_DATA_DIR_NAME)
-            if not os.path.exists(app_user_dir):
-                # check if there exists directory used by app versions prior to 0.9.18
-                app_user_dir_old = os.path.join(home_dir, APP_NAME_SHORT)
-                if os.path.exists(app_user_dir_old):
-                    shutil.copytree(app_user_dir_old, app_user_dir)
+            # if not os.path.exists(app_user_dir):
+            #     # check if there exists directory used by app versions prior to 0.9.18
+            #     app_user_dir_old = os.path.join(home_dir, APP_NAME_SHORT)
+            #     if os.path.isdir(app_user_dir_old):
+            #         shutil.copytree(app_user_dir_old, app_user_dir)
 
         self.data_dir = app_user_dir
         self.cache_dir = os.path.join(app_user_dir, 'cache')
