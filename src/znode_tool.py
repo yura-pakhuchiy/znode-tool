@@ -25,6 +25,7 @@ if __name__ == '__main__':
 
     if getattr(sys, 'frozen', False):
         app_path = base_path = sys._MEIPASS
+        os.environ['SSL_CERT_FILE'] = os.path.join(sys._MEIPASS, 'certifi', 'cacert.pem')
     else:
         app_path = os.path.dirname(__file__)
         path, tail = os.path.split(app_path)
