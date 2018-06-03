@@ -5,6 +5,7 @@ matrix:
     python: '3.6'
   - os: osx
     language: generic
+    osx_image: xcode7.3
 addons:
   apt:
     packages: libudev-dev libusb-1.0-0-dev libfox-1.6-dev
