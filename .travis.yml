@@ -1,3 +1,6 @@
+branches:
+  except:
+    - noci
 language: python
 matrix:
   include:
