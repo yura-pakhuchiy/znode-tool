@@ -20,7 +20,7 @@ def process_ledger_exceptions(func):
         except BTChipException as e:
             logging.exception('Error while communicating with Ledger hardware wallet.')
             if (e.sw in (0x6d00, 0x6700)):
-                e.message += '\n\nMake sure the Dash app is running on your Ledger device.'
+                e.message += '\n\nMake sure the Zcoin app is running on your Ledger device.'
             elif (e.sw == 0x6982):
                 e.message += '\n\nMake sure you have entered the PIN on your Ledger device.'
             raise
