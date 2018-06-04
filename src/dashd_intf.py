@@ -318,7 +318,9 @@ class DashdSSH(object):
                                     except Exception as e:
                                         # second method did not suceed, so assume, that conf file is located
                                         # i /home/<username>/.zcoin directory
-                                        dash_conf_file = '/home/' + self.username + '/.zcoin/zcoin.conf'
+                                        dash_conf_file = '/' + self.username + '/.zcoin/zcoin.conf'
+                                        if self.username != 'root':
+                                            dash_conf_file = '/home' + dash_conf_file
                                         conf_lines = self.remote_command('cat ' + dash_conf_file)
 
                         for line in conf_lines:
