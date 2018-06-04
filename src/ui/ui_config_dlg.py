@@ -86,6 +86,7 @@ class Ui_ConfigDlg(object):
         self.btnMoveDownConn.setObjectName("btnMoveDownConn")
         self.horizontalLayout.addWidget(self.btnMoveDownConn)
         self.btnRestoreDefault = QtWidgets.QToolButton(self.frame)
+        self.btnRestoreDefault.setVisible(False)
         self.btnRestoreDefault.setMinimumSize(QtCore.QSize(26, 26))
         self.btnRestoreDefault.setText("")
         self.btnRestoreDefault.setObjectName("btnRestoreDefault")

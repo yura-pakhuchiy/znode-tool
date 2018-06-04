@@ -207,6 +207,9 @@
                  </item>
                  <item>
                   <widget class="QToolButton" name="btnRestoreDefault">
+                   <property name="visible">
+                    <bool>false</bool>
+                   </property>
                    <property name="minimumSize">
                     <size>
                      <width>26</width>
