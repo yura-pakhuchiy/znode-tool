@@ -33,10 +33,10 @@ class AboutDlg(QDialog, ui_about_dlg.Ui_AboutDlg, WndUtils):
         self.textAbout.viewport().setAutoFillBackground(False)
         if sys.platform == 'win32':
             # self.resize(600, 390)
-            self.textAbout.setHtml(self.textAbout.toHtml().replace('font-size:11pt', 'font-size:10pt'))
-            self.textAbout.setHtml(self.textAbout.toHtml().replace('font-size:9pt', 'font-size:8pt'))
+            self.textAbout.setHtml(self.textAbout.toHtml().replace('font-size:11pt', 'font-size:8pt'))
+            # self.textAbout.setHtml(self.textAbout.toHtml().replace('font-size:9pt', 'font-size:8pt'))
         elif sys.platform == 'darwin':
-            self.textAbout.setHtml(self.textAbout.toHtml().replace('font-size:11pt', 'font-size:13pt'))
+            self.textAbout.setHtml(self.textAbout.toHtml().replace('font-size:11pt', 'font-size:14pt'))
         # elif sys.platform == 'linux':
         #     self.resize(620, 400)
         # self.layout().setSizeConstraint(QLayout.SetFixedSize)
