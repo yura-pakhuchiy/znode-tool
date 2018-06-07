@@ -293,7 +293,8 @@ class MainWindow(QMainWindow, WndUtils, ui_main_dlg.Ui_MainWindow):
         the name of the current configuration file. This method is executed after each successful loading
         of the configuration file.
         """
-        app_version_part = ' (v' + self.config.app_version + ')' if self.config.app_version else ''
+        app_version_part = ' (v' + self.config.app_version if self.config.app_version else ''
+        app_version_part += ' ' + self.config.app_git_rev + ')' if self.config.app_git_rev else ')'
 
         if self.config.dash_network == 'TESTNET':
             testnet_part = ' [TESTNET]'

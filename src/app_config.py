@@ -46,6 +46,7 @@ class AppConfig(object):
         self.app_path = ''  # will be passed in the init method
         self.log_level_str = 'WARNING'
         self.app_version = ''
+        self.app_git_rev = ''
         QLocale.setDefault(app_utils.get_default_locale())
         self.date_format = app_utils.get_default_locale().dateFormat(QLocale.ShortFormat)
         self.date_time_format = app_utils.get_default_locale().dateTimeFormat(QLocale.ShortFormat)
@@ -127,6 +128,13 @@ class AppConfig(object):
         except:
             pass
 
+        try:
+            with open(os.path.join(app_path, 'git-rev.txt')) as fptr:
+                lines = fptr.readline().split()
+                self.app_git_rev = lines[0]
+        except:
+            pass
+
         parser = argparse.ArgumentParser()
         parser.add_argument('--config', help="Path to a configuration file", dest='config')
         parser.add_argument('--data-dir', help="Root directory for configuration file, cache and log subdirs",
@@ -199,7 +207,7 @@ class AppConfig(object):
         logger.setLevel(self.log_level_str)
         if log_exists:
             handler.doRollover()
-        logging.info('App started')
+        logging.info('App started ' + self.app_version + ' ' + self.app_git_rev)
 
         # directory for configuration backups:
         self.cfg_backup_dir = os.path.join(app_user_dir, 'backup')

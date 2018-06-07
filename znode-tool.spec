@@ -11,6 +11,7 @@ no_bits = platform.architecture()[0].replace('bit','')
 version_str = ''
 base_dir = os.path.dirname(os.path.realpath('__file__'))
 
+os.system('git rev-parse --short HEAD > git-rev.txt')
 # look for version string
 with open(os.path.join(base_dir, 'version.txt')) as fptr:
     for line in fptr:
@@ -39,7 +40,8 @@ add_files = [
  ('img/save.png','/img'),
  ('img/thumbs-up-down.png','/img'),
  ('img/recover.png','/img'),
- ('version.txt', '')
+ ('version.txt', ''),
+ ('git-rev.txt', '')
 ]
 
 lib_path = next(p for p in sys.path if 'site-packages' in p)

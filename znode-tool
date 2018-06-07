@@ -1,3 +1,4 @@
 #!/bin/sh
 
+git rev-parse --short HEAD > git-rev.txt
 ./src/znode_tool.py
