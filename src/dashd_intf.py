@@ -869,8 +869,8 @@ class DashdInterface(WndUtils):
     @control_rpc_call
     def znodebroadcast(self, what, hexto):
         if self.open():
-            if what == 'relay':
-            # if False:
+            # if what == 'relay':
+            if False:
                 # FIXME: relay does not report correct status without 3rd parameter due to bug in zcoind
                 return self.proxy.znodebroadcast(what, hexto, "not-safe")
             else:

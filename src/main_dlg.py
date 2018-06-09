@@ -1543,31 +1543,39 @@ class MainWindow(QMainWindow, WndUtils, ui_main_dlg.Ui_MainWindow):
                                 default_button=QMessageBox.Yes, icon=QMessageBox.Information) == QMessageBox.Cancel:
                     return
 
-                ret = self.dashd_intf.znodebroadcast("relay", work)
+                retried = False
+                while True:
+                    ret = self.dashd_intf.znodebroadcast("relay", work)
 
-                match = re.search("relayed broadcast messages for (\d+) znodes.*failed to relay (\d+), total 1",
-                                  ret['overall'])
+                    match = re.search("relayed broadcast messages for (\d+) znodes.*failed to relay (\d+), total 1",
+                                      ret['overall'])
 
-                failed_count = 0
-                ok_count = 0
-                if match and len(match.groups()):
-                    ok_count = int(match.group(1))
-                    failed_count = int(match.group(2))
+                    failed_count = 0
+                    ok_count = 0
+                    if match and len(match.groups()):
+                        ok_count = int(match.group(1))
+                        failed_count = int(match.group(2))
 
-                overall = ret['overall']
-                errorMessage = ''
+                    overall = ret['overall']
+                    errorMessage = ''
 
-                if failed_count:
-                    del ret['overall']
-                    keys = list(ret.keys())
-                    if len(keys):
-                        # get the first (and currently the only) error message
-                        errorMessage = ret[keys[0]].get('errorMessage')
+                    if failed_count:
+                        if not retried:
+                            # Due to zcoind bug first `znodebroadcast relay` can report failure while it actually
+                            # succeeded. Re-broadcast it again to check actual result.
+                            retried = True
+                            continue
+                        del ret['overall']
+                        keys = list(ret.keys())
+                        if len(keys):
+                            # get the first (and currently the only) error message
+                            errorMessage = ret[keys[0]].get('errorMessage')
 
-                if failed_count == 0:
-                    self.infoMsg(overall)
-                else:
-                    self.errorMsg('Failed to start znode.\n\nResponse from Zcoin daemon: %s.' % errorMessage)
+                    if failed_count == 0:
+                        self.infoMsg(overall)
+                    else:
+                        self.errorMsg('Failed to start znode.\n\nResponse from Zcoin daemon: %s.' % errorMessage)
+                    break
             else:
                 logging.error('Start MN error: ' + str(ret))
                 errorMessage = ret[list(ret.keys())[0]].get('errorMessage')
