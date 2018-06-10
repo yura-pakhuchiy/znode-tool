@@ -355,7 +355,7 @@ class DashdIndexException(JSONRPCException):
                        'spentindex=1\n' + \
                        'timestampindex=1\n' + \
                        'txindex=1\n\n' + \
-                       'Changing these parameters requires to execute dashd with "-reindex" option (linux: ./dashd -reindex)'
+                       'Changing these parameters requires to execute zcoind with "-reindex" option (linux: ./zcoind -reindex)'
 
 
 def control_rpc_call(func):
