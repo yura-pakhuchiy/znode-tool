@@ -387,14 +387,14 @@ class MainWindow(QMainWindow, WndUtils, ui_main_dlg.Ui_MainWindow):
             cur_date_str = datetime.datetime.now().strftime('%Y-%m-%d')
 
             response = urllib.request.urlopen(
-                'https://raw.githubusercontent.com/yura-pakhuchiy/znode-tool/master/version.txt')
+                'https://raw.githubusercontent.com/yura-pakhuchiy/znode-tool/release/version.txt')
             contents = response.read()
             lines = contents.decode().splitlines()
             remote_version_str = app_utils.extract_app_version(lines)
-            remote_ver = app_utils.version_str_to_number(remote_version_str)
-            local_ver = app_utils.version_str_to_number(self.config.app_version)
+            # remote_ver = app_utils.version_str_to_number(remote_version_str)
+            # local_ver = app_utils.version_str_to_number(self.config.app_version)
 
-            if remote_ver > local_ver:
+            if remote_version_str != self.config.app_version:
                 if sys.platform == 'win32':
                     item_name = 'exe_win'
                     no_bits = platform.architecture()[0].replace('bit', '')

@@ -1,6 +1,7 @@
 branches:
   except:
     - noci
+    - release
 language: python
 matrix:
   include:
