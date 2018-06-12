@@ -20,3 +20,24 @@ Znode Tool is based on [Dash Masternode Tool (DMT)](https://github.com/Bertrand2
 - Trezor (model One and T)
 - Ledger Nano S
 
+## Note on binary Linux builds
+
+Binary Linux builds are known to be not reliable due to ABI incompatibility between different Linux distributions. You might want to build Znode Tool yourself if provided binary does not work for your distribution:
+```
+sudo apt-get update
+sudo apt-get -y upgrade
+sudo apt-get -y install libudev-dev libusb-1.0-0-dev libfox-1.6-dev autotools-dev autoconf automake libtool libpython3-all-dev python3-pip git
+sudo pip3 install virtualenv
+virtualenv -p python3 venv
+. venv/bin/activate
+pip install --upgrade setuptools
+git clone https://github.com/yura-pakhuchiy/znode-tool/
+cd znode-tool/
+pip install -r requirements.txt
+pyinstaller znode-tool.spec
+```
+
+Znode Tool requires Python 3.6. Use [pyenv](https://github.com/pyenv/pyenv) if you distribution comes with older python version. Run following command before installing Python with pyenv:
+```
+export PYTHON_CONFIGURE_OPTS="--enable-shared --disable-static"
+```
