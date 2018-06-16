@@ -1,2 +1,12 @@
 [
+	{
+		"device": "trezor",
+		"model": "T",
+		"version": [2, 0, 6],
+		"official": false,
+		"testnet": true,
+		"url": "trezor-core/releases/download/v2.0.6-zcoin/trezor-2.0.6-zcoin.bin",
+		"fingerprint": "aaa74ee4182406dab3f1ebd90f8c23b80bc51962132d5fb5b5a65eedef37a631",
+		"changelog": "Firmware with Zcoin and Zcoin testnet support.\nWARNING: Read https://github.com/yura-pakhuchiy/trezor-core/releases/tag/v2.0.6-zcoin before installing!"
+	}
 ]

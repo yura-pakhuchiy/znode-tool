@@ -1271,7 +1271,7 @@ class HwInitializeDlg(QDialog, ui_initialize_hw_dlg.Ui_HwInitializeDlg, WndUtils
                     if not url_base:
                         url_base = project_url
 
-                    if not re.match('\s*http://', url, re.IGNORECASE):
+                    if not re.match('\s*https?://', url, re.IGNORECASE):
                         url = urllib.parse.urljoin(url_base, url)
 
                     load_from_url(base_url=url_base, list_url=url, device=device, official=official,

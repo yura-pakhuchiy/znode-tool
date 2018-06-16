@@ -1,7 +1,7 @@
 [
   {
-    "url_base": "",
-    "url": "hardware-wallets/firmware/releases.json"
+    "url_base": "https://github.com/yura-pakhuchiy",
+    "url": "https://raw.githubusercontent.com/yura-pakhuchiy/znode-tool/master/hardware-wallets/firmware/releases.json"
   },
   {
     "url_base": "https://wallet.trezor.io",
