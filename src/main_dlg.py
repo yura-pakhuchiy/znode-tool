@@ -722,6 +722,7 @@ class MainWindow(QMainWindow, WndUtils, ui_main_dlg.Ui_MainWindow):
                 self.on_action_disconnect_hw_triggered()
 
         if not self.hw_client:
+            has_connected = False
             try:
                 try:
                     logging.info('Connecting to a hardware wallet device. self: ' + str(self))
@@ -730,36 +731,28 @@ class MainWindow(QMainWindow, WndUtils, ui_main_dlg.Ui_MainWindow):
                                                         passphrase_encoding=self.config.hw_keepkey_psw_encoding,
                                                         hw_type=self.config.hw_type)
 
+                    has_connected = True
+                    self.config.hw_coin_name = 'Zcoin'
                     if self.config.dash_network == 'TESTNET':
-                        # check if Dash testnet is supported by this hardware wallet
+                        self.config.hw_coin_name += ' Testnet'
 
-                        found_testnet_support = False
+                    addr = hw_intf.get_address(self.hw_session,
+                                               dash_utils.get_default_bip32_path(self.config.dash_network))
+                    if not dash_utils.validate_address(addr, self.config.dash_network):
+                        if self.config.hw_type == HWType.ledger_nano_s:
+                            msg = f'Your Ledger device is not in {self.config.hw_coin_name} mode. ' \
+                                    f'Start {self.config.hw_coin_name} application on device and try again.'
+                        else:
+                            msg = f'Your HW wallet returned invalid address ({addr}). ' \
+                                    f'Does your firmware support {self.config.hw_coin_name}?'
+                        self.errorMsg(msg)
                         self.config.hw_coin_name = ''
-                        if self.config.hw_type in (HWType.trezor, HWType.keepkey):
-                            for coin in self.hw_client.features.coins:
-                                if coin.coin_name.upper() == 'ZCOIN TESTNET':
-                                    found_testnet_support = True
-                                    self.config.hw_coin_name = coin.coin_name
-                                    break
-                        elif self.config.hw_type == HWType.ledger_nano_s:
-                            addr = hw_intf.get_address(self.hw_session,
-                                                       dash_utils.get_default_bip32_path(self.config.dash_network))
-                            if dash_utils.validate_address(addr, self.config.dash_network):
-                                found_testnet_support = False
-
-                        if not found_testnet_support:
-                            url = get_note_url('DMT0002')
-                            msg = f'Your hardware wallet device does not support Zcoin TESTNET ' \
-                                  f'(<a href="{url}">see details</a>).'
-                            self.errorMsg(msg)
-                            try:
-                                self.disconnect_hardware_wallet()
-                            except Exception:
-                                pass
-                            self.setStatus2Text(msg, 'red')
-                            return
-                    else:
-                        self.config.hw_coin_name = 'Zcoin'
+                        try:
+                            self.disconnect_hardware_wallet()
+                        except Exception:
+                            pass
+                        self.setStatus2Text(msg, 'red')
+                        return
 
                     logging.info('Connected to a hardware wallet')
                     self.setStatus2Text('<b>HW status:</b> connected to %s' % hw_intf.get_hw_label(self.hw_client),
@@ -774,7 +767,10 @@ class MainWindow(QMainWindow, WndUtils, ui_main_dlg.Ui_MainWindow):
                         pass
                     logging.info('Could not connect to a hardware wallet')
                     self.setStatus2Text('<b>HW status:</b> cannot connect to %s device' % self.getHwName(), 'red')
-                    self.errorMsg(str(e))
+                    msg = str(e)
+                    if self.config.hw_type == HWType.trezor and has_connected:
+                        msg += f'\nDoes your firmware support {self.config.hw_coin_name}?'
+                    self.errorMsg(msg)
 
                 ret = self.hw_client
             except HardwareWalletCancelException:
