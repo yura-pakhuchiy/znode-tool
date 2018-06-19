@@ -68,7 +68,7 @@ class AppConfig(object):
         # connections
         self.defective_net_configs = []
 
-        self.hw_type = None  # TREZOR, KEEPKEY, LEDGERNANOS
+        self.hw_type = HWType.trezor
         self.hw_keepkey_psw_encoding = 'NFC'  # Keepkey passphrase UTF8 chars encoding:
                                               #  NFC: compatible with official Keepkey client app
                                               #  NFKD: compatible with Trezor
