@@ -235,7 +235,9 @@ def connect_trezor(device_id: Optional[str] = None) -> Optional[MyTrezorClient]:
         if device_id:
             msg = 'Cannot connect to the Trezor device with this id: %s.' % device_id
         else:
-            msg = 'Cannot find any Trezor device.'
+            msg = 'Cannot find any Trezor device.\n\nIf you are using Trezor model T, make sure that it is unlocked ' \
+                    'and that Trezor Bridge is installed on your computer. You can download Trezor Bridge from:\n' \
+                    'https://beta-wallet.trezor.io/#/bridge'
         raise Exception(msg)
 
 

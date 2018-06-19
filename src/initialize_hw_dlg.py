@@ -584,7 +584,9 @@ class HwInitializeDlg(QDialog, ui_initialize_hw_dlg.Ui_HwInitializeDlg, WndUtils
                         raise Exception('There can be only one device in the bootloader mode at the time of updating '
                                         'firmware')
                     elif len(boot_clients) == 0:
-                        raise Exception('Enable bootloader mode in your device')
+                        raise Exception('Enable bootloader mode in your device.\n\nIf you are flashing Trezor model T, '
+                                'make sure that Trezor Bridge is installed. You can download Trezor Bridge from:\n'
+                                'https://beta-wallet.trezor.io/#/bridge')
 
                     hw_client = boot_clients[0]
 

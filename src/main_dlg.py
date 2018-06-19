@@ -648,7 +648,8 @@ class MainWindow(QMainWindow, WndUtils, ui_main_dlg.Ui_MainWindow):
             self.checkDashdConnection(call_on_check_finished=connection_test_finished)
         else:
             # configuration not complete: show config window
-            self.errorMsg("There are no (enabled) connections to an RPC node in your configuration.")
+            self.errorMsg("There are no (enabled) connections to an RPC node in your configuration. "
+                    "Please go to Settings and setup RPC connection to your zcoind.")
 
     def setStatus1Text(self, text, color):
         def set_status(text, color):
