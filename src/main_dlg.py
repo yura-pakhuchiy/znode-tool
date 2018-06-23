@@ -35,7 +35,7 @@ import hw_pin_dlg
 import send_payout_dlg
 import app_utils
 from initialize_hw_dlg import HwInitializeDlg
-from proposals_dlg import ProposalsDlg
+# from proposals_dlg import ProposalsDlg
 from app_config import AppConfig, MasternodeConfig, APP_NAME_SHORT
 from app_defs import PROJECT_URL, HWType, get_note_url
 from dash_utils import bip32_path_n_to_string
@@ -1805,10 +1805,10 @@ class MainWindow(QMainWindow, WndUtils, ui_main_dlg.Ui_MainWindow):
         else:
             logging.warning("curMasternode or collateralAddress empty")
 
-    @pyqtSlot(bool)
-    def on_action_open_proposals_window_triggered(self):
-        ui = ProposalsDlg(self, self.dashd_intf)
-        ui.exec_()
+    # @pyqtSlot(bool)
+    # def on_action_open_proposals_window_triggered(self):
+    #     ui = ProposalsDlg(self, self.dashd_intf)
+    #     ui.exec_()
 
     @pyqtSlot(bool)
     def on_action_about_qt_triggered(self, enabled):
