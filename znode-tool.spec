@@ -1,8 +1,10 @@
 # -*- mode: python -*-
+# vim: ft=python
 import sys
 import os
 import os.path
 import platform
+import hashlib
 
 block_cipher = None
 
@@ -119,10 +121,21 @@ os.chdir(dist_path)
 
 if os_type == 'win32':
     print('Compressing Windows executable')
-    os.system('"7z.exe" a %s %s -mx0' % (os.path.join(all_bin_dir, 'ZnodeTool_' + version_str + '.win' + no_bits + '.zip'),  'ZnodeTool.exe'))
+    filename = os.path.join(all_bin_dir, 'ZnodeTool_' + version_str + '.win' + no_bits + '.zip')
+    os.system('"7z.exe" a %s %s -mx0' % (filename,  'ZnodeTool.exe'))
 elif os_type == 'darwin':
     print('Compressing Mac executable')
-    os.system('zip -r "%s" "%s"' % (os.path.join(all_bin_dir, 'ZnodeTool_' + version_str + '.mac.zip'),  'ZnodeTool.app'))
+    filename = os.path.join(all_bin_dir, 'ZnodeTool_' + version_str + '.mac.zip')
+    os.system('zip -r "%s" "%s"' % (filename,  'ZnodeTool.app'))
 elif os_type == 'linux':
     print('Compressing Linux executable')
-    os.system('tar -zcvf %s %s' % (os.path.join(all_bin_dir, 'ZnodeTool_' + version_str + '.linux.tar.gz'),  'ZnodeTool'))
+    filename = os.path.join(all_bin_dir, 'ZnodeTool_' + version_str + '.linux.tar.gz')
+    os.system('tar -zcvf %s %s' % (filename,  'ZnodeTool'))
+
+print('SHA-256 of %s:' % filename)
+sha256_hash = hashlib.sha256()
+with open(filename, "rb") as f:
+    # Read and update hash string value in blocks of 4K
+    for byte_block in iter(lambda: f.read(4096),b""):
+        sha256_hash.update(byte_block)
+    print(sha256_hash.hexdigest())
