@@ -856,7 +856,7 @@ class WalletDlg(QDialog, ui_send_payout_dlg.Ui_SendPayoutDlg, WndUtils):
         :param new_utxos_out: Here will be returned all the new UTXOs.
         :param existing_utxos_out: In this list will be returned all UTXOs which existed in the self.utxo list before
         """
-        ADDRESS_CHUNK = 10
+        ADDRESS_CHUNK = 20
         if not self.finishing and not ctrl.finish:
             self.set_message(f'Reading unspent transaction outputs...')
 
