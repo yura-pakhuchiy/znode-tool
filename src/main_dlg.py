@@ -737,23 +737,23 @@ class MainWindow(QMainWindow, WndUtils, ui_main_dlg.Ui_MainWindow):
                     if self.config.dash_network == 'TESTNET':
                         self.config.hw_coin_name += ' Testnet'
 
-                    addr = hw_intf.get_address(self.hw_session,
-                                               dash_utils.get_default_bip32_path(self.config.dash_network))
-                    if not dash_utils.validate_address(addr, self.config.dash_network):
-                        if self.config.hw_type == HWType.ledger_nano_s:
-                            msg = f'Your Ledger device is not in {self.config.hw_coin_name} mode. ' \
-                                    f'Start {self.config.hw_coin_name} application on device and try again.'
-                        else:
-                            msg = f'Your HW wallet returned invalid address ({addr}). ' \
-                                    f'Does your firmware support {self.config.hw_coin_name}?'
-                        self.errorMsg(msg)
-                        self.config.hw_coin_name = ''
-                        try:
-                            self.disconnect_hardware_wallet()
-                        except Exception:
-                            pass
-                        self.setStatus2Text(msg, 'red')
-                        return
+                    # addr = hw_intf.get_address(self.hw_session,
+                    #                            dash_utils.get_default_bip32_path(self.config.dash_network))
+                    # if not dash_utils.validate_address(addr, self.config.dash_network):
+                    #     if self.config.hw_type == HWType.ledger_nano_s:
+                    #         msg = f'Your Ledger device is not in {self.config.hw_coin_name} mode. ' \
+                    #                 f'Start {self.config.hw_coin_name} application on device and try again.'
+                    #     else:
+                    #         msg = f'Your HW wallet returned invalid address ({addr}). ' \
+                    #                 f'Does your firmware support {self.config.hw_coin_name}?'
+                    #     self.errorMsg(msg)
+                    #     self.config.hw_coin_name = ''
+                    #     try:
+                    #         self.disconnect_hardware_wallet()
+                    #     except Exception:
+                    #         pass
+                    #     self.setStatus2Text(msg, 'red')
+                    #     return
 
                     logging.info('Connected to a hardware wallet')
                     self.setStatus2Text('<b>HW status:</b> connected to %s' % hw_intf.get_hw_label(self.hw_client),
