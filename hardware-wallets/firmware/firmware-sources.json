@@ -1,13 +1,13 @@
 [
   {
-    "url_base": "https://wallet.trezor.io",
+    "url_base": "https://beta-wallet.trezor.io",
     "url": "data/firmware/1/releases.json",
     "official": true,
     "device": "trezor",
     "model": "1"
   },
   {
-    "url_base": "https://wallet.trezor.io",
+    "url_base": "https://beta-wallet.trezor.io",
     "url": "data/firmware/2/releases.json",
     "official": true,
     "device": "trezor",
