@@ -58,6 +58,8 @@ install:
   # target Python version and architecture
   - "%CMD_IN_ENV% pip install -r requirements.txt"
 
+  - "%CMD_IN_ENV% pip install -U pypiwin32"
+
 build_script:
   - "%CMD_IN_ENV% pyinstaller znode-tool.spec"
 
