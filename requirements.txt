@@ -3,7 +3,7 @@ bitcoin>=1.1.42
 trezor==0.9.1
 keepkey
 PyQt5==5.9.2
-pyinstaller
+pyinstaller==3.3.1
 paramiko>=2.2.1
 requests>=2.18.4
 mnemonic>=0.18
